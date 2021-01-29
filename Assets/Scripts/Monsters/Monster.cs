@@ -8,11 +8,23 @@ public class Monster : MonoBehaviour
     public float visionRange = 10;
     public float visionAngle = 90;
     public float hearingRatio = 1;
+    public float speedWalk = 1;
+    public float speedRun = 2;
 
     private GameObject player;
     private PlayerStats playerStats;
     private NavMeshAgent navMeshAgent;
     private Vector3 target = new Vector3(0, 0, 0);
+
+    public bool haveTarget()
+    {
+        return target != getDefaultTarget();
+    }
+
+    public bool isRunning()
+    {
+        return haveTarget();
+    }
 
     void Start()
     {
@@ -58,6 +70,7 @@ public class Monster : MonoBehaviour
     void Update()
     {
         updateTarget();
+        navMeshAgent.speed = haveTarget() ? speedRun : speedWalk;
         navMeshAgent.SetDestination(target);
         // transform.position += (target - transform.position).normalized * Time.deltaTime;
     }
