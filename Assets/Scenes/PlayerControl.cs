@@ -25,6 +25,8 @@ public class PlayerControl : MonoBehaviour
     public Camera playerCamera;
     public CharacterController characterController;
 
+    public GameObject flashlight;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -92,5 +94,7 @@ public class PlayerControl : MonoBehaviour
             playerCamera.transform.localRotation = Quaternion.Euler(rotationX, 0, 0);
             transform.rotation *= Quaternion.Euler(0, Input.GetAxis("Mouse X") * baseLookSpeed, 0);
         }
+
+        flashlight.transform.localRotation = Quaternion.Euler(rotationX, 0, 0);
     }
 }
