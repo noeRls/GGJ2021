@@ -4,13 +4,17 @@ using UnityEngine;
 
 public class PlayerControl : MonoBehaviour
 {
-    public float baseWalkSpeed = 8f;
-    public float baseRunSpeed = 12f;
+    public float baseWalkSpeed = 6f;
+    public float baseRunSpeed = 10f;
     public float baseJumpSpeed = 8f;
 
-    public float basePlayerGravity = 20f;
-    public float basePlayerLookSpeed = 2f;
-    public float basePlayerLookXLimit = 80f;
+    public float baseGravity = 20f;
+    public float baseLookSpeed = 2f;
+    public float baseLookXLimit = 80f;
+
+    public float endurance = 100f;
+    public float decreaserEndurance = 20f;
+    public float increaserEndurance = 5f;
 
     public bool canRun = true;
     public bool canMove = true;
@@ -33,14 +37,35 @@ public class PlayerControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        bool isRunning = Input.GetKey(KeyCode.LeftShift);
+        bool doesWannaRun = Input.GetKey(KeyCode.LeftShift);
+        bool doesMove = Mathf.Abs(Input.GetAxis("Vertical")) + Mathf.Abs(Input.GetAxis("Horizontal")) > 0;
         bool isJumping = Input.GetKey(KeyCode.Space);
 
         Vector3 forward = transform.TransformDirection(Vector3.forward);
         Vector3 right = transform.TransformDirection(Vector3.right);
 
-        float curSpeedX = canMove ? (isRunning ? baseRunSpeed : baseWalkSpeed) * Input.GetAxis("Vertical") : 0;
-        float curSpeedY = canMove ? (isRunning ? baseRunSpeed : baseWalkSpeed) * Input.GetAxis("Horizontal") : 0;
+        bool willRun = false;
+        if (doesWannaRun)
+        {
+            if (endurance > 0)
+            {
+                if (doesMove)
+                {
+                    endurance -= decreaserEndurance * Time.deltaTime;
+                    willRun = true;
+                }
+            } else
+            {
+                endurance = 0;
+            }
+        } 
+        else if (endurance < 100)
+        {
+            endurance += increaserEndurance * Time.deltaTime;
+        }
+
+        float curSpeedX = canMove ? (willRun ? baseRunSpeed : baseWalkSpeed) * Input.GetAxis("Vertical") : 0;
+        float curSpeedY = canMove ? (willRun ? baseRunSpeed : baseWalkSpeed) * Input.GetAxis("Horizontal") : 0;
 
         float moveDirectionY = moveDirection.y;
         moveDirection = (forward * curSpeedX) + (right * curSpeedY);
@@ -55,17 +80,17 @@ public class PlayerControl : MonoBehaviour
 
         if (!characterController.isGrounded)
         {
-            moveDirection.y -= basePlayerGravity * Time.deltaTime;
+            moveDirection.y -= baseGravity * Time.deltaTime;
         }
 
         characterController.Move(moveDirection * Time.deltaTime);
 
         if (canMove)
         {
-            rotationX += -Input.GetAxis("Mouse Y") * basePlayerLookSpeed;
-            rotationX = Mathf.Clamp(rotationX, -basePlayerLookXLimit, basePlayerLookXLimit);
+            rotationX += -Input.GetAxis("Mouse Y") * baseLookSpeed;
+            rotationX = Mathf.Clamp(rotationX, -baseLookXLimit, baseLookXLimit);
             playerCamera.transform.localRotation = Quaternion.Euler(rotationX, 0, 0);
-            transform.rotation *= Quaternion.Euler(0, Input.GetAxis("Mouse X") * basePlayerLookSpeed, 0);
+            transform.rotation *= Quaternion.Euler(0, Input.GetAxis("Mouse X") * baseLookSpeed, 0);
         }
     }
 }
