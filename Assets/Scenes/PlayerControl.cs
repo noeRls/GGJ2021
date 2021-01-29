@@ -26,6 +26,7 @@ public class PlayerControl : MonoBehaviour
     public CharacterController characterController;
 
     public GameObject flashlight;
+    public bool isFlashlightOn = true;
 
     // Start is called before the first frame update
     void Start()
@@ -47,6 +48,11 @@ public class PlayerControl : MonoBehaviour
         Vector3 right = transform.TransformDirection(Vector3.right);
 
         bool willRun = false;
+
+        if (Input.GetKeyDown(KeyCode.F))
+            isFlashlightOn = !isFlashlightOn;
+        flashlight.SetActive(isFlashlightOn);
+
         if (doesWannaRun)
         {
             if (endurance > 0)
