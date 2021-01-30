@@ -13,8 +13,12 @@ public class PlayerStats : MonoBehaviour
     public float soundDistanceRunning = 20f;
     public float soundDistanceWalking = 10f;
 
+    public bool canRun = true;
+    public bool canMove = true;
+
     public bool running = false;
     public bool moving = false;
+    public bool dead = false;
 
     public float getSoundDistance()
     {
@@ -25,9 +29,10 @@ public class PlayerStats : MonoBehaviour
     public void doDamage(float damage)
     {
         hp -= damage;
-        if (hp < 0)
+        if (hp <= 0)
         {
-            print("Plyaer died");
+            dead = true;
+            canMove = false;
         }
     }
 }
