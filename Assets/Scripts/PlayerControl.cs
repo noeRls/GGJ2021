@@ -10,7 +10,6 @@ public class PlayerControl : MonoBehaviour
     public float baseLookSpeed = 2f;
     public float baseLookXLimit = 80f;
 
-    public float endurance = 100f;
     public float decreaserEndurance = 20f;
     public float increaserEndurance = 5f;
 
@@ -59,21 +58,21 @@ public class PlayerControl : MonoBehaviour
 
         if (doesWannaRun)
         {
-            if (endurance > 0)
+            if (stats.endurance > 0)
             {
                 if (doesMove)
                 {
-                    endurance -= decreaserEndurance * Time.deltaTime;
+                    stats.endurance -= decreaserEndurance * Time.deltaTime;
                     willRun = true;
                 }
             } else
             {
-                endurance = 0;
+                stats.endurance = 0;
             }
         } 
-        else if (endurance < 100)
+        else if (stats.endurance < 100)
         {
-            endurance += increaserEndurance * Time.deltaTime;
+            stats.endurance += increaserEndurance * Time.deltaTime;
         }
         stats.running = willRun;
         stats.moving = doesMove;

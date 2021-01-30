@@ -9,7 +9,6 @@ public class ShopTrigger : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        player = GetComponent<PlayerControl>().playerController;
     }
 
     private void OnTriggerEnter(Collider shouldBePlayer)
