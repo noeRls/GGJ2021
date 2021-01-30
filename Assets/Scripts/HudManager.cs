@@ -17,7 +17,6 @@ public class HudManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        stateDisplay.enabled = false;
     }
 
     // Update is called once per frame
@@ -27,7 +26,9 @@ public class HudManager : MonoBehaviour
         hpDisplay.value = playerStats.hp;
         enduranceDisplay.value = playerStats.endurance;
 
-        stateDisplay.enabled = true;
-        stateDisplay.text = "You died !";
+        if (playerStats.dead)
+        {
+            stateDisplay.text = "You died !";
+        }
     }
 }
