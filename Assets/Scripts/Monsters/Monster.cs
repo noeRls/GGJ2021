@@ -88,7 +88,6 @@ public class Monster : MonoBehaviour
     {
         if ((target - transform.position).magnitude <= 1)
         {
-            print("target reached");
             onTargetReach();
         }
     }
