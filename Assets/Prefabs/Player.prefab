@@ -95,6 +95,7 @@ GameObject:
   - component: {fileID: 6849324791762520706}
   - component: {fileID: 6849324791762520704}
   - component: {fileID: 7834023843258993510}
+  - component: {fileID: 2110749200955200688}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -147,9 +148,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8cb2aa872faadd64ab1aedfd3ae12cae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseWalkSpeed: 8
-  baseRunSpeed: 12
-  baseJumpSpeed: 8
+  lockMouse: 1
   baseGravity: 20
   baseLookSpeed: 2
   baseLookXLimit: 80
@@ -174,7 +173,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6db68ae58ab493744b1761247ec159e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hp: 100
+  walkSpeed: 6
+  runSpeed: 10
+  jumpSpeed: 8
+  endurance: 100
   soundDistanceRunning: 10
   soundDistanceWalking: 7
   running: 0
   moving: 1
+--- !u!65 &2110749200955200688
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6849324791762520707}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1.4634061, z: 1}
+  m_Center: {x: 0, y: -0.23170292, z: 0}

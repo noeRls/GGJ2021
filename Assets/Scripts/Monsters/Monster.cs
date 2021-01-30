@@ -16,6 +16,10 @@ public class Monster : MonoBehaviour
     private NavMeshAgent navMeshAgent;
     private Vector3 target = new Vector3(0, 0, 0);
 
+    public float getTargetDistance()
+    {
+        return (player.transform.position - transform.position).magnitude;
+    }
     public bool haveTarget()
     {
         return target != getDefaultTarget();

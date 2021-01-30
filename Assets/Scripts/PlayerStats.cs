@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerStats : MonoBehaviour
 {
+    public float hp = 100.0f;
     public float walkSpeed = 6f;
     public float runSpeed = 10f;
     public float jumpSpeed = 8f;
@@ -18,5 +19,14 @@ public class PlayerStats : MonoBehaviour
     {
         if (!moving) return 0;
         return running ? soundDistanceRunning : soundDistanceWalking;
+    }
+
+    public void doDamage(float damage)
+    {
+        hp -= damage;
+        if (hp < 0)
+        {
+            print("Plyaer died");
+        }
     }
 }

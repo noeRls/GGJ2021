@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerControl : MonoBehaviour
 {
+    public bool lockMouse = true;
+
     public float baseGravity = 20f;
     public float baseLookSpeed = 2f;
     public float baseLookXLimit = 80f;
@@ -31,8 +33,11 @@ public class PlayerControl : MonoBehaviour
     {
         characterController = GetComponent<CharacterController>();
 
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
+        if (lockMouse)
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+        }
         stats = GetComponent<PlayerStats>();
     }
 

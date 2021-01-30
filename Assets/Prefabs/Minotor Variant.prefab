@@ -13,6 +13,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 1085914349876893267}
+--- !u!114 &7700256449828461551
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3485230664300736070}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e4bf29cf7ba0264f8af94eb391f176f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  punchInterval: 1.167
+  punchDamage: 20
 --- !u!1001 &1085914349869572915
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -102,7 +116,7 @@ PrefabInstance:
     - target: {fileID: 4562137127143830386, guid: 5baae45fbefa3f44d9b87651bfa344e2,
         type: 3}
       propertyPath: m_Name
-      value: Minotor
+      value: Minotor Variant
       objectReference: {fileID: 0}
     - target: {fileID: 4562137127143830393, guid: 5baae45fbefa3f44d9b87651bfa344e2,
         type: 3}
