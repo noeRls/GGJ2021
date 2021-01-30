@@ -854,6 +854,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2323429388351132572, guid: 133a87e5339f18b4188ee93e38d39c3b,
+        type: 3}
+      propertyPath: monsterSpawned
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 2323429388351132573, guid: 133a87e5339f18b4188ee93e38d39c3b,
         type: 3}
       propertyPath: m_RootOrder
