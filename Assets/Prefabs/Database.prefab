@@ -24,7 +24,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6582832060233280147}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 12.43, y: 6.27, z: 3.78}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -44,33 +44,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   items:
-  - price: 0
-    name: Cyka
+  - price: 10
+    name: Wall
     imagePath: pokppok
-    description: 
-    prefab: {fileID: 0}
-    category: 0
-  - price: 0
-    name: Blyat
-    imagePath: 
-    description: 
-    prefab: {fileID: 0}
-    category: 0
-  - price: 0
-    name: Tamer
-    imagePath: 
-    description: 
-    prefab: {fileID: 0}
-    category: 0
-  - price: 0
-    name: 
-    imagePath: 
-    description: 
-    prefab: {fileID: 0}
-    category: 0
-  - price: 0
-    name: 
-    imagePath: 
-    description: 
-    prefab: {fileID: 0}
-    category: 0
+    description: Simple Wall
+    prefab: {fileID: 6612248245404518628, guid: 0f5870fe651dae44286b2b788b2cfbe0,
+      type: 3}
+    category: 1
+    activationKey: 119

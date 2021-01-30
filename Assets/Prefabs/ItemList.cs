@@ -11,6 +11,7 @@ public struct ItemInfo
     public string description;
     public GameObject prefab;
     public ItemCategory category;
+    public KeyCode activationKey;
 }
 
 public enum ItemCategory
