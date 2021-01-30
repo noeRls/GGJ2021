@@ -21,7 +21,7 @@ public class PlayerControl : MonoBehaviour
     float rotationX = 0f;
 
     public Camera playerCamera;
-    public CharacterController characterController;
+    public CharacterController playerController;
 
     public GameObject flashlight;
     public bool isFlashlightOn = true;
@@ -31,14 +31,14 @@ public class PlayerControl : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        characterController = GetComponent<CharacterController>();
+        playerController = GetComponent<CharacterController>();
+        stats = GetComponent<PlayerStats>();
 
         if (lockMouse)
         {
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
         }
-        stats = GetComponent<PlayerStats>();
     }
 
     // Update is called once per frame
@@ -84,7 +84,7 @@ public class PlayerControl : MonoBehaviour
         float moveDirectionY = moveDirection.y;
         moveDirection = (forward * curSpeedX) + (right * curSpeedY);
 
-        if (isJumping && canMove && characterController.isGrounded)
+        if (isJumping && canMove && playerController.isGrounded)
         {
             moveDirection.y = stats.jumpSpeed;
         } else
@@ -92,12 +92,12 @@ public class PlayerControl : MonoBehaviour
             moveDirection.y = moveDirectionY;
         }
 
-        if (!characterController.isGrounded)
+        if (!playerController.isGrounded)
         {
             moveDirection.y -= baseGravity * Time.deltaTime;
         }
 
-        characterController.Move(moveDirection * Time.deltaTime);
+        playerController.Move(moveDirection * Time.deltaTime);
 
         if (canMove)
         {
