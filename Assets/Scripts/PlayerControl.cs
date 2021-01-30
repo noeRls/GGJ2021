@@ -15,7 +15,7 @@ public class PlayerControl : MonoBehaviour
     public bool canRun = true;
     public bool canMove = true;
 
-    Vector3 moveDirection = new Vector3();
+    public Vector3 moveDirection = new Vector3();
     float rotationX = 0f;
 
     public Camera playerCamera;

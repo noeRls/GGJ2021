@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class PlayerStats : MonoBehaviour
 {
@@ -14,6 +12,7 @@ public class PlayerStats : MonoBehaviour
 
     public bool running = false;
     public bool moving = false;
+
     public float getSoundDistance()
     {
         if (!moving) return 0;
