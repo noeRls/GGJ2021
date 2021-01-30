@@ -5,7 +5,8 @@ using UnityEngine;
 public class ShopTrigger : MonoBehaviour
 {
     public Collider player;
-    public PlayerStats stats;
+    
+    public bool isPlayerIn = false;
 
     // Start is called before the first frame update
     void Start()
@@ -18,7 +19,15 @@ public class ShopTrigger : MonoBehaviour
         if (shouldBePlayer != player)
             return;
 
-        stats.doDamage(50);
+        isPlayerIn = true;
+    }
+
+    private void OnTriggerExit(Collider shouldBePlayer)
+    {
+        if (shouldBePlayer != player)
+            return;
+
+        isPlayerIn = false;
     }
 
     // Update is called once per frame
