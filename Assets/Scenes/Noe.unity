@@ -428,21 +428,15 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 6849324790729374514, guid: 55b0203a60299c5419a8d5dd1a386236,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 1.02
+    - target: {fileID: 2126942965, guid: 55b0203a60299c5419a8d5dd1a386236, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6849324791762520704, guid: 55b0203a60299c5419a8d5dd1a386236,
         type: 3}
       propertyPath: lockMouse
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6849324791762520704, guid: 55b0203a60299c5419a8d5dd1a386236,
-        type: 3}
-      propertyPath: flashlight
-      value: 
-      objectReference: {fileID: 1143588671}
     - target: {fileID: 6849324791762520705, guid: 55b0203a60299c5419a8d5dd1a386236,
         type: 3}
       propertyPath: m_RootOrder
@@ -733,7 +727,7 @@ PrefabInstance:
     - target: {fileID: 4010935451392209158, guid: b0c52f0bbaa423e48bb0c31f77eb361a,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.335
+      value: 0.005
       objectReference: {fileID: 0}
     - target: {fileID: 4010935451392209158, guid: b0c52f0bbaa423e48bb0c31f77eb361a,
         type: 3}
@@ -793,6 +787,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Minotor
+      objectReference: {fileID: 0}
+    - target: {fileID: 3485230664300736070, guid: dc1b2d05d2f4d6344a6ddc1100886554,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3485230664300736077, guid: dc1b2d05d2f4d6344a6ddc1100886554,
         type: 3}

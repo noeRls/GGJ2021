@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using System;
 
 public class Monster : MonoBehaviour
 {
@@ -13,8 +14,9 @@ public class Monster : MonoBehaviour
 
     private GameObject player;
     private PlayerStats playerStats;
-    private NavMeshAgent navMeshAgent;
-    private Vector3 target = new Vector3(0, 0, 0);
+    protected NavMeshAgent navMeshAgent;
+    protected Vector3 target = new Vector3(0, 0, 0);
+    protected Vector3? playerPos = null;
 
     public float getTargetDistance()
     {
@@ -46,7 +48,7 @@ public class Monster : MonoBehaviour
         return new Vector3(0, 0, 0);
     }
 
-    void updateTarget()
+    void updatePlayerPos()
     {
         Vector3 playerDirection = player.transform.position - transform.position;
         RaycastHit hit;
@@ -55,27 +57,59 @@ public class Monster : MonoBehaviour
             Vector3.Angle(transform.forward, playerDirection.normalized) <= visionAngle / 2.0f
         )
         {
-            target = hit.point;
+            playerPos = hit.point;
             return;
         }
 
         if (playerStats.getSoundDistance() * hearingRatio >= playerDirection.magnitude)
         {
-            target = player.transform.position;
+            playerPos = player.transform.position;
         }
+    }
 
-        if ((target - transform.position).magnitude <= 0.1)
+    virtual protected void updateTarget()
+    {
+        if (playerPos.HasValue)
         {
-            target = getDefaultTarget();
+            target = playerPos.Value;
         }
+    }
+
+    virtual protected void onTargetReach()
+    {
+        if (playerPos.HasValue && target == playerPos.Value)
+        {
+            playerPos = null;
+        }
+        target = getDefaultTarget();
+    }
+
+    void checkTargetDestination()
+    {
+        if ((target - transform.position).magnitude <= 1)
+        {
+            print("target reached");
+            onTargetReach();
+        }
+    }
+
+    virtual protected void setSpeed()
+    {
+        navMeshAgent.speed = isRunning() ? speedRun : speedWalk;
+    }
+
+    protected void monsterUpdate()
+    {
+        updatePlayerPos();
+        updateTarget();
+        checkTargetDestination();
+        setSpeed();
+        navMeshAgent.SetDestination(target);
     }
 
     // Update is called once per frame
     void Update()
     {
-        updateTarget();
-        navMeshAgent.speed = haveTarget() ? speedRun : speedWalk;
-        navMeshAgent.SetDestination(target);
-        // transform.position += (target - transform.position).normalized * Time.deltaTime;
+        monsterUpdate();
     }
 }
