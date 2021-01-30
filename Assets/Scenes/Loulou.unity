@@ -3829,17 +3829,17 @@ PrefabInstance:
     - target: {fileID: 4308028665518965159, guid: 5623f8156312b0140be13bf2c3d89714,
         type: 3}
       propertyPath: items.Array.data[0].description
-      value: pokpokpo
+      value: tamer
       objectReference: {fileID: 0}
     - target: {fileID: 4308028665518965159, guid: 5623f8156312b0140be13bf2c3d89714,
         type: 3}
       propertyPath: items.Array.data[1].description
-      value: pokpok
+      value: nik
       objectReference: {fileID: 0}
     - target: {fileID: 4308028665518965159, guid: 5623f8156312b0140be13bf2c3d89714,
         type: 3}
       propertyPath: items.Array.data[2].description
-      value: pokpokpok
+      value: cyka
       objectReference: {fileID: 0}
     - target: {fileID: 6582832060233280147, guid: 5623f8156312b0140be13bf2c3d89714,
         type: 3}

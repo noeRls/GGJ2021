@@ -12,7 +12,6 @@ public class ShopManager : MonoBehaviour, IPointerClickHandler
     public Button exitButton, buyButton;
     public Transform baseSpawnPoint;
     public GameObject prefabItemGridElement;
-    private RectTransform content;
 
     public ItemList database;
 
@@ -28,8 +27,6 @@ public class ShopManager : MonoBehaviour, IPointerClickHandler
             GameObject gridElement = Instantiate(prefabItemGridElement, spawnPosition, baseSpawnPoint.rotation);
             gridElement.transform.SetParent(baseSpawnPoint, false);
             ItemGridElementInfo infos = gridElement.GetComponent<ItemGridElementInfo>();
-            Debug.Log(infos);
-            Debug.Log(infos.itemDescription.text);
 
             infos.itemDescription.text = database.items[i].description;
             infos.itemImage = null;
@@ -37,8 +34,6 @@ public class ShopManager : MonoBehaviour, IPointerClickHandler
         }
 
         exitButton.onClick.AddListener(ExitShop);
-
-
     }
 
     private void ExitShop()
