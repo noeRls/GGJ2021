@@ -94,9 +94,10 @@ GameObject:
   - component: {fileID: 6849324791762520705}
   - component: {fileID: 6849324791762520706}
   - component: {fileID: 6849324791762520704}
+  - component: {fileID: 7834023843258993510}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -149,10 +150,31 @@ MonoBehaviour:
   baseWalkSpeed: 8
   baseRunSpeed: 12
   baseJumpSpeed: 8
-  basePlayerGravity: 20
-  basePlayerLookSpeed: 2
-  basePlayerLookXLimit: 80
+  baseGravity: 20
+  baseLookSpeed: 2
+  baseLookXLimit: 80
+  endurance: 100
+  decreaserEndurance: 20
+  increaserEndurance: 5
   canRun: 1
   canMove: 1
   playerCamera: {fileID: 6849324790729374512}
   characterController: {fileID: 6849324791762520706}
+  flashlight: {fileID: 0}
+  isFlashlightOn: 1
+--- !u!114 &7834023843258993510
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6849324791762520707}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6db68ae58ab493744b1761247ec159e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundDistanceRunning: 10
+  soundDistanceWalking: 7
+  running: 0
+  moving: 1

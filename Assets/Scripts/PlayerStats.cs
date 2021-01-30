@@ -4,10 +4,16 @@ using UnityEngine;
 
 public class PlayerStats : MonoBehaviour
 {
-    public float soundDistanceRunning = 20;
-    public float soundDistanceWalking = 10;
+    public float walkSpeed = 6f;
+    public float runSpeed = 10f;
+    public float jumpSpeed = 8f;
+    public float endurance = 100f;
+
+    public float soundDistanceRunning = 20f;
+    public float soundDistanceWalking = 10f;
+
     public bool running = false;
-    public bool moving = true;
+    public bool moving = false;
     public float getSoundDistance()
     {
         if (!moving) return 0;
