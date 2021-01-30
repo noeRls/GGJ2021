@@ -24,7 +24,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6582832060233280147}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 12.43, y: 6.27, z: 3.78}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -46,31 +46,31 @@ MonoBehaviour:
   items:
   - price: 0
     name: Cyka
-    imagePath: pokppok
-    description: 
+    imagePath: podqkpoqzkd
+    description: tamer
     prefab: {fileID: 0}
     category: 0
   - price: 0
     name: Blyat
-    imagePath: 
-    description: 
+    imagePath: pokpok
+    description: nik
     prefab: {fileID: 0}
     category: 0
   - price: 0
     name: Tamer
-    imagePath: 
-    description: 
+    imagePath: pokpok
+    description: cyka
     prefab: {fileID: 0}
     category: 0
   - price: 0
-    name: 
-    imagePath: 
-    description: 
+    name: Tamer
+    imagePath: pokpok
+    description: cyka
     prefab: {fileID: 0}
     category: 0
   - price: 0
-    name: 
-    imagePath: 
-    description: 
+    name: Tamer
+    imagePath: pokpok
+    description: cyka
     prefab: {fileID: 0}
     category: 0

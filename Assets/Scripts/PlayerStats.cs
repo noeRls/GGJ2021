@@ -20,6 +20,8 @@ public class PlayerStats : MonoBehaviour
     public bool moving = false;
     public bool dead = false;
 
+    public bool lockMouse = true;
+
     public float getSoundDistance()
     {
         if (!moving) return 0;
@@ -34,5 +36,17 @@ public class PlayerStats : MonoBehaviour
             dead = true;
             canMove = false;
         }
+    }
+
+    public void Freeze()
+    {
+        canMove = false;
+        lockMouse = false;
+    }
+
+    public void Unfreeze()
+    {
+        canMove = true;
+        lockMouse = true;
     }
 }
