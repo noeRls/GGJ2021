@@ -324,7 +324,7 @@ GameObject:
   - component: {fileID: 2983884892698028309}
   m_Layer: 5
   m_Name: HUD
-  m_TagString: Untagged
+  m_TagString: HudManager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -426,7 +426,7 @@ MonoBehaviour:
   prefabItemListElement: {fileID: 0}
   hpDisplay: {fileID: 2983884892669286552}
   enduranceDisplay: {fileID: 2983884894039593799}
-  stateDisplay: {fileID: 0}
+  pickupHint: {fileID: 0}
 --- !u!1 &2983884892835765167
 GameObject:
   m_ObjectHideFlags: 0
