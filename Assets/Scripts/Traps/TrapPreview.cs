@@ -7,6 +7,7 @@ public class TrapPreview : MonoBehaviour
     public BoxCollider disableCollider;
     public Rigidbody disableRigidbody;
     public List<MonoBehaviour> scriptToDisable;
+
     // Start is called before the first frame update
     private void Awake()
     {

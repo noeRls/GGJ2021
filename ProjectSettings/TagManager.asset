@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Database
   - GameManager
+  - HudManager
   layers:
   - Default
   - TransparentFX

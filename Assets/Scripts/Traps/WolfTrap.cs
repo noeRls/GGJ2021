@@ -12,10 +12,15 @@ public class WolfTrap : MonoBehaviour
     public float harvestRange = 5;
     public int moneyByHarvest = 100;
 
+    private HudManager hudManager;
+    private bool tooltipStateInternal = false;
+
+
     // Update is called once per frame
 
     private void Start()
     {
+        hudManager = GameObject.FindGameObjectWithTag("HudManager").GetComponent<HudManager>();
         player = GameObject.FindGameObjectWithTag("Player");
     }
 
@@ -40,11 +45,19 @@ public class WolfTrap : MonoBehaviour
 
     private void Update()
     {
-        if ((player.transform.position - transform.position).magnitude < harvestRange &&
-            Input.GetKeyDown(KeyCode.E)
-        ) // TODO add condition only allowed during night
+        if (isClose && (player.transform.position - transform.position).magnitude < harvestRange)
         {
-            open();
+            tooltipStateInternal = true;
+            hudManager.TogglePickupHint(true);
+            if (Input.GetKeyDown(KeyCode.E)) {
+                open();
+            }
+        } else {
+                    if (tooltipStateInternal)
+            {
+                hudManager.TogglePickupHint(false);
+                tooltipStateInternal = false;
+            }
         }
     }
 
