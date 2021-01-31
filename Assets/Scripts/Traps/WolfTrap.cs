@@ -8,11 +8,13 @@ public class WolfTrap : MonoBehaviour
     public Animator animator;
     private GameObject player;
     private GameObject trappedMonster;
-    private HudManager hudManager;
 
     public float harvestRange = 5;
     public int moneyByHarvest = 100;
+
+    private HudManager hudManager;
     private bool tooltipStateInternal = false;
+
 
     // Update is called once per frame
 
@@ -30,7 +32,7 @@ public class WolfTrap : MonoBehaviour
         {
             PlayerStats stats = player.GetComponent<PlayerStats>();
             stats.money += moneyByHarvest;
-            Destroy(trappedMonster);
+            trappedMonster.GetComponent<Monster>().Destroy();
             trappedMonster = null;
         }
     }
@@ -47,19 +49,16 @@ public class WolfTrap : MonoBehaviour
         {
             tooltipStateInternal = true;
             hudManager.TogglePickupHint(true);
-            if (Input.GetKeyDown(KeyCode.E)) // TODO add condition only allowed during night
-            {
+            if (Input.GetKeyDown(KeyCode.E)) {
                 open();
             }
-        } else
-        {
-            if (tooltipStateInternal)
+        } else {
+                    if (tooltipStateInternal)
             {
                 hudManager.TogglePickupHint(false);
                 tooltipStateInternal = false;
             }
         }
-        
     }
 
     private void OnTriggerEnter(Collider other)
@@ -68,7 +67,6 @@ public class WolfTrap : MonoBehaviour
         Monster monster = other.gameObject.GetComponent<Monster>();
         if (monster != null)
         {
-            print("trapped");
             trappedMonster = other.gameObject;
             monster.getTrapped();
             close();

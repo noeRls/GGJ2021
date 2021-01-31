@@ -5,6 +5,7 @@ using UnityEngine;
 public class ShopTrigger : MonoBehaviour
 {
     public GuiManager guiManager;
+    public AmbientSound ambiantSound;
 
     private void OnTriggerEnter(Collider shouldBePlayer)
     {
@@ -12,6 +13,7 @@ public class ShopTrigger : MonoBehaviour
             return;
 
         guiManager.EnterShop();
+        ambiantSound.PlayShopAmbient();
     }
 
     private void OnTriggerExit(Collider shouldBePlayer)
@@ -20,5 +22,6 @@ public class ShopTrigger : MonoBehaviour
             return;
 
         guiManager.ExitShop();
+        ambiantSound.StopPlayingShopAmbiant();
     }
 }

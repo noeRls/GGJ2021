@@ -44,6 +44,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sunLight: {fileID: 0}
-  timeOfNight: 120
-  timeOfDay: 60
+  timeOfNight: 30
+  timeOfDay: 30
   days: 1
+  night: 0

@@ -14,7 +14,7 @@ public class GameManager : MonoBehaviour
     public float days = 1;
 
     private float timer = 0;
-    private bool night = false;
+    public bool night = false;
     // Start is called before the first frame update
     void Start()
     {

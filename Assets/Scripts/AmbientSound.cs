@@ -9,17 +9,15 @@ public class AmbientSound : MonoBehaviour
     public AudioClip NightAmbient;
     public AudioClip ShopAmbient;
     private AudioSource AmbientSource;
-
+    private GameManager manager;
     // Start is called before the first frame update
     void Start()
     {
+        manager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
+        manager.onDayStart += PlayDayAmbient;
+        manager.onNightStart += PlayNightAmbient;
         AmbientSource = GetComponent<AudioSource>();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
+        PlayDayAmbient();
     }
 
     //When sunrise, Day ambient sound start and night's one stop
@@ -43,5 +41,15 @@ public class AmbientSound : MonoBehaviour
         AmbientSource.Stop();
         AmbientSource.clip = ShopAmbient;
         AmbientSource.Play();
+    }
+
+    public void StopPlayingShopAmbiant()
+    {
+        if (manager.night)
+        {
+            PlayNightAmbient();
+        } else {
+            PlayDayAmbient();
+        }
     }
 }
