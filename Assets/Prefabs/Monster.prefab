@@ -53,7 +53,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 50
+  MaxDistance: 100
   Pan2D: 0
   rolloffMode: 2
   BypassEffects: 0
@@ -130,7 +130,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 0.027777778
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -169,8 +169,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   WalkMonster: {fileID: 0}
   RunMonster: {fileID: 0}
-  Run: 0
-  stat: {fileID: 0}
+  soundIntervalWalking: 10
+  soundIntervalRunning: 5
 --- !u!1 &4562137127143830386
 GameObject:
   m_ObjectHideFlags: 0
@@ -231,11 +231,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67b4a003b9b068e44ad5a6fa3e3c3b9b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  visionRange: 10
+  visionRange: 50
   visionAngle: 90
   hearingRatio: 1
-  speedWalk: 1
-  speedRun: 2
+  speedWalk: 2.5
+  speedRun: 5
+  target: {x: 0, y: 0, z: 0}
+  defaultTarget: {x: 0, y: 0, z: 0}
 --- !u!54 &4562137127143830392
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -266,7 +268,7 @@ NavMeshAgent:
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
-  m_StoppingDistance: 0
+  m_StoppingDistance: 0.1
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1

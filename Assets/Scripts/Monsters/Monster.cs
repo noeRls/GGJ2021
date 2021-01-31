@@ -1,8 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.AI;
-using System;
 
 public class Monster : MonoBehaviour
 {
@@ -11,13 +8,23 @@ public class Monster : MonoBehaviour
     public float hearingRatio = 1;
     public float speedWalk = 1;
     public float speedRun = 2;
+    private float refreshTimeout = 0;
 
     private GameObject player;
     private PlayerStats playerStats;
     protected NavMeshAgent navMeshAgent;
-    protected Vector3 target = new Vector3(0, 0, 0);
+    public Vector3 target = new Vector3(0, 0, 0);
     protected Vector3? playerPos = null;
     private bool isTrapped = false;
+    private GameManager manager;
+
+    private Vector3 mapCenter = new Vector3(500, 122, 500);
+    public Vector3 defaultTarget;
+
+    private void Awake()
+    {
+        NavMesh.pathfindingIterationsPerFrame = 500;
+    }
 
     public float getTargetDistance()
     {
@@ -42,11 +49,55 @@ public class Monster : MonoBehaviour
             print("Error: no player found");
         }
         playerStats = player.GetComponent<PlayerStats>();
+        updateDefaultTarget();
+        target = getDefaultTarget();
+        GameManager manager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
+        manager.onDayStart += onDayStart;
+    }
+
+    public void Destroy()
+    {
+        manager.onDayStart -= onDayStart;
+        Destroy(gameObject);
+    }
+
+    void onDayStart()
+    {
+        if (!isTrapped)
+        {
+            Destroy();
+        }
     }
 
     Vector3 getDefaultTarget()
     {
-        return new Vector3(0, 0, 0);
+        return defaultTarget;
+    }
+
+    Vector3 getOppositePosition()
+    {
+        Vector3 diffFromCenter = transform.position - mapCenter;
+        Vector3 opposedDirection = transform.position - diffFromCenter * 2;
+        print(transform.position);
+        opposedDirection.y = transform.position.y;
+        print(opposedDirection);
+        return opposedDirection;
+    }
+
+    Vector3 getCloseRandomPosition()
+    {
+        return transform.position + new Vector3(Random.Range(0.0f, 10f), 0, Random.Range(0.0f, 10f));
+    }
+
+    void updateDefaultTarget()
+    {
+        Vector3 position = getCloseRandomPosition();
+        Vector3 goodPosition;
+        if (!MonsterSpawner.clipPointToNavMesh(position, out goodPosition))
+        {
+            Debug.LogWarning("Failed to generate default target for monster");
+        }
+        defaultTarget = goodPosition;
     }
 
     void updatePlayerPos()
@@ -78,6 +129,10 @@ public class Monster : MonoBehaviour
 
     virtual protected void onTargetReach()
     {
+        if (target == getDefaultTarget())
+        {
+            updateDefaultTarget();
+        }
         if (playerPos.HasValue && target == playerPos.Value)
         {
             playerPos = null;
@@ -107,11 +162,17 @@ public class Monster : MonoBehaviour
     protected void monsterUpdate()
     {
         if (isTrapped) return;
+        Vector3 lastTarget = target;
         updatePlayerPos();
         updateTarget();
         checkTargetDestination();
         setSpeed();
-        navMeshAgent.SetDestination(target);
+        refreshTimeout -= Time.deltaTime;
+        if (target != lastTarget && refreshTimeout < 0)
+        {
+            refreshTimeout = 0.1f;
+            navMeshAgent.SetDestination(target);
+        }
     }
 
     // Update is called once per frame

@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerStats : MonoBehaviour
@@ -26,20 +25,16 @@ public class PlayerStats : MonoBehaviour
 
     private float runnerPotionTimeRemaining = 0.0f;
 
-    public Dictionary<ItemType, int> inventory = new Dictionary<ItemType, int>();
+    private Dictionary<ItemType, int> inventory = new Dictionary<ItemType, int>();
     public float getSoundDistance()
     {
         if (!moving) return 0;
         return running ? soundDistanceRunning : soundDistanceWalking;
     }
 
-    private void Start()
+    void Start()
     {
-        ItemList itemLists = GameObject.FindGameObjectWithTag("Database").GetComponent<ItemList>();
-        foreach (var item in itemLists.items)
-        {
-            inventory[item.itemType] = 0;
-        }
+        Inventory();
     }
 
     public void doDamage(float damage)
@@ -68,7 +63,6 @@ public class PlayerStats : MonoBehaviour
     {
         money -= item.price;
         inventory[item.itemType] += 1;
-        //todo increment item
     }
 
     public void useHealthPack()
@@ -93,5 +87,17 @@ public class PlayerStats : MonoBehaviour
     public float getRunSpeed()
     {
         return runnerPotionTimeRemaining > 0 ? runSpeed * 2 : runSpeed;
+    }
+
+    public Dictionary<ItemType, int> Inventory()
+    {
+        if (inventory.Count == 0)
+        {
+            foreach (var item in GameObject.FindGameObjectWithTag("Database").GetComponent<ItemList>().items)
+            {
+                inventory[item.itemType] = 0;
+            }
+        }
+        return inventory;
     }
 }

@@ -27,7 +27,7 @@ public class WolfTrap : MonoBehaviour
         {
             PlayerStats stats = player.GetComponent<PlayerStats>();
             stats.money += moneyByHarvest;
-            Destroy(trappedMonster);
+            trappedMonster.GetComponent<Monster>().Destroy();
             trappedMonster = null;
         }
     }

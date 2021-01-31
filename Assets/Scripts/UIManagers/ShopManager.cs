@@ -58,9 +58,6 @@ public class ShopManager : MonoBehaviour
 
     public void BuyItem()
     {
-        if (!guiManager.isShopInteractable)
-            return;
-
         if (currentlySelectedItem.price < playerStats.money)
         {
             playerStats.BuyItem(currentlySelectedItem);
@@ -70,8 +67,6 @@ public class ShopManager : MonoBehaviour
 
     public void OnItemGridElementClick(PointerEventData eventData)
     {
-        if (!guiManager.isShopInteractable)
-            return;
         SelectItem(eventData.pointerPress.GetComponent<ItemGridElementInfo>().itemInfo);
     }
 
@@ -86,9 +81,6 @@ public class ShopManager : MonoBehaviour
 
     private void ExitShop()
     {
-        if (!guiManager.isShopInteractable)
-            return;
-
         guiManager.ExitShop();
     }
 }

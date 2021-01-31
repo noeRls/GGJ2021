@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Assets/SoundAsset/Coins Sfx.meta
 guid: 63396f015f751f541829aa5c4aed0dcb
+=======
+guid: 07d4bc1191fc2d946aafed5815788223
+>>>>>>> 6c2e112de4f07d52c89b59845cb1992f3f77f4a1:Assets/Models/Items.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}

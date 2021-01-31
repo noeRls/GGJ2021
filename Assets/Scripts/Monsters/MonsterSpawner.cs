@@ -13,13 +13,17 @@ public enum SpawnRate
 {
     public GameObject prefab;
     public SpawnRate rate;
+    public bool isSpider;
 }
 
 public class MonsterSpawner : MonoBehaviour
 {
     public float radius = 10f;
+    public float increaseByRound = 0.5f;
     public int monsterSpawned = 10;
     public List<SpawnMobInfo> mobs;
+    private GameManager gameManager;
+    public bool spiderSpawner = false;
 
     SpawnMobInfo getRandomMonster()
     {
@@ -40,16 +44,34 @@ public class MonsterSpawner : MonoBehaviour
         return mobs[mobs.Count - 1];
     }
 
-    Vector3 getRandomSpawnPosition()
+    public static bool clipPointToNavMesh(Vector3 point, out Vector3 result, int agentId = 0)
+    {
+        NavMeshHit myNavHit;
+        NavMeshQueryFilter queryFilter = new NavMeshQueryFilter();
+        queryFilter.areaMask = -1;
+        queryFilter.agentTypeID = agentId;
+        if (NavMesh.SamplePosition(point, out myNavHit, 100, queryFilter))
+        {
+            result = myNavHit.position;
+            return true;
+        }
+        else
+        {
+            Debug.LogWarning("Failed to generate a good point direction for monster");
+            result = new Vector3(0, 0, 0);
+            return false;
+        }
+    }
+    Vector3 getRandomSpawnPosition(int agentTypeId)
     {
         for (int i = 0; i < 10; i++)
         {
             Vector3 randomPointInRange = new Vector3(Random.Range(-1f, 1f), 0, Random.Range(-1f, 1f)) * radius;
             Vector3 worldPos = transform.position + randomPointInRange;
-            NavMeshHit myNavHit;
-            if (NavMesh.SamplePosition(worldPos, out myNavHit, 100, -1))
+            Vector3 goodPos;
+            if (clipPointToNavMesh(worldPos, out goodPos, agentTypeId))
             {
-                return myNavHit.position;
+                return goodPos;
             }
         }
         Debug.LogWarning("Failed to generate a good spawn position for monster");
@@ -58,16 +80,24 @@ public class MonsterSpawner : MonoBehaviour
 
     public void spawnMonsters()
     {
-        for (int i = 0; i < monsterSpawned; i++)
+        float ratioBonus = gameManager.days - 1 * increaseByRound;
+        for (int i = 0; i < monsterSpawned * (1 + ratioBonus); i++)
         {
             SpawnMobInfo mob = getRandomMonster();
-            Vector3 spawnPos = getRandomSpawnPosition();
+            Vector3 spawnPos = getRandomSpawnPosition(mob.isSpider ? 1 : 0);
             Instantiate(mob.prefab, spawnPos, Quaternion.Euler(0, Random.Range(0f, 380f), 0));
         }
     }
 
     private void Start()
     {
-        spawnMonsters();
+        gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
+        if (spiderSpawner)
+        {
+            spawnMonsters();
+        } else
+        {
+            gameManager.onNightStart += spawnMonsters;
+        }
     }
 }

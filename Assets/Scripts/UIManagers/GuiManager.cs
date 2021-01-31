@@ -7,10 +7,8 @@ public class GuiManager : MonoBehaviour
 {
     public Canvas hud;
     public Canvas shop;
-    public bool isShopInteractable = false;
 
-    public Canvas pauseMenu;
-    private Button[] pauseMenuButtons;
+    public StateScreenManager stateScreen;
 
     public ShopTrigger shopTrigger;
     private PlayerStats playerStats;
@@ -22,11 +20,9 @@ public class GuiManager : MonoBehaviour
             .FindGameObjectWithTag("Player")
             .GetComponent<PlayerStats>();
 
-        pauseMenuButtons = pauseMenu.GetComponentsInChildren<Button>();
-
-        hud.enabled = true;
-        shop.enabled = false;
-        pauseMenu.enabled = false;
+        hud.gameObject.SetActive(true);
+        shop.gameObject.SetActive(false);
+        stateScreen.Summon(StateScreenManager.State.OFF);
     }
 
     // Update is called once per frame
@@ -34,43 +30,46 @@ public class GuiManager : MonoBehaviour
     {
         if (Input.GetKeyDown("escape"))
         {
-            if (shop.enabled)
+            if (shop.isActiveAndEnabled)
                 ExitShop();
             else
                 TogglePause();
         }
+
+        if (playerStats.dead)
+            BringDeath();
+    }
+
+    public void BringDeath()
+    {
+        hud.gameObject.SetActive(false);
+        stateScreen.Summon(StateScreenManager.State.DEATH);
+    }
+
+    public void bringVictory()
+    {
+        hud.gameObject.SetActive(false);
+        stateScreen.Summon(StateScreenManager.State.WIN);
     }
 
     public void TogglePause()
     {
-        pauseMenu.enabled = !pauseMenu.enabled;
-        hud.enabled = !pauseMenu.enabled;
-        Time.timeScale = pauseMenu.enabled ? 0f : 1f;
-
-        foreach (Button b in pauseMenuButtons)
-        {
-            b.interactable = pauseMenu.enabled;
-        }
-
-        if (pauseMenu.enabled)
-            playerStats.Freeze();
-        else
-            playerStats.Unfreeze();
+        bool isPauseEnabled = stateScreen.CurrentState() == StateScreenManager.State.PAUSE;
+        stateScreen.Summon(isPauseEnabled ? StateScreenManager.State.OFF : StateScreenManager.State.PAUSE);
+        hud.gameObject.SetActive(isPauseEnabled);
     }
 
     public void ExitShop()
     {
-        playerStats.Unfreeze(); 
-        hud.enabled = true;
-        shop.enabled = false;
-        isShopInteractable = false;
+        playerStats.Unfreeze();
+        hud.gameObject.SetActive(true);
+        shop.gameObject.SetActive(false);
     }
 
     public void EnterShop()
     {
         playerStats.Freeze();
-        hud.enabled = false;
-        shop.enabled = true;
-        isShopInteractable = true;
+        hud.gameObject.SetActive(false);
+        shop.gameObject.SetActive(true);
     }
 }

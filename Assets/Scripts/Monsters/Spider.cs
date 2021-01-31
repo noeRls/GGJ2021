@@ -30,6 +30,7 @@ public class Spider : MonoBehaviour
     void Update()
     {
         Vector3 distanceToPlayer = transform.position - player.transform.position;
+        if (distanceToPlayer.magnitude > 100) { return; }
         if (distanceToPlayer.magnitude < playerStats.getSoundDistance())
         {
             Vector3 targetPoint = transform.position + (distanceToPlayer.normalized * playerStats.getSoundDistance());

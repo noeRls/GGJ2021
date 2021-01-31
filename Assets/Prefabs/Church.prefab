@@ -97,6 +97,7 @@ GameObject:
   - component: {fileID: 429452}
   - component: {fileID: 369731904}
   - component: {fileID: 7866127840811839857}
+  - component: {fileID: 6419916689322036452}
   m_Layer: 0
   m_Name: Church
   m_TagString: Untagged
@@ -145,8 +146,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e43c5f52f123c334a9baa6acbf6019c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
   guiManager: {fileID: 0}
+--- !u!65 &6419916689322036452
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 114982}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 15.595911, y: 6.34861, z: 12.397486}
+  m_Center: {x: -0.039625168, y: 3.3281364, z: 0.0068941135}
 --- !u!1 &140998
 GameObject:
   m_ObjectHideFlags: 0
