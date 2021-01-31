@@ -9,8 +9,7 @@ public class GuiManager : MonoBehaviour
     public Canvas shop;
     public bool isShopInteractable = false;
 
-    public Canvas pauseMenu;
-    private Button[] pauseMenuButtons;
+    public StateScreenManager stateScreen;
 
     public ShopTrigger shopTrigger;
     private PlayerStats playerStats;
@@ -22,11 +21,9 @@ public class GuiManager : MonoBehaviour
             .FindGameObjectWithTag("Player")
             .GetComponent<PlayerStats>();
 
-        pauseMenuButtons = pauseMenu.GetComponentsInChildren<Button>();
-
         hud.enabled = true;
         shop.enabled = false;
-        pauseMenu.enabled = false;
+        stateScreen.Summon(StateScreenManager.State.OFF);
     }
 
     // Update is called once per frame
@@ -43,19 +40,9 @@ public class GuiManager : MonoBehaviour
 
     public void TogglePause()
     {
-        pauseMenu.enabled = !pauseMenu.enabled;
-        hud.enabled = !pauseMenu.enabled;
-        Time.timeScale = pauseMenu.enabled ? 0f : 1f;
-
-        foreach (Button b in pauseMenuButtons)
-        {
-            b.interactable = pauseMenu.enabled;
-        }
-
-        if (pauseMenu.enabled)
-            playerStats.Freeze();
-        else
-            playerStats.Unfreeze();
+        bool isPauseEnabled = stateScreen.CurrentState() == StateScreenManager.State.WIN;
+        stateScreen.Summon(isPauseEnabled ? StateScreenManager.State.OFF : StateScreenManager.State.WIN);
+        hud.enabled = isPauseEnabled;
     }
 
     public void ExitShop()
