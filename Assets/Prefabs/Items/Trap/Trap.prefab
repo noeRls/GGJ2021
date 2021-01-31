@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 6369808756784898475}
   - component: {fileID: 2630758199449610419}
   - component: {fileID: 4420502116239236146}
-  - component: {fileID: -2390718740406438187}
   m_Layer: 0
   m_Name: Trap
   m_TagString: Untagged
@@ -92,8 +91,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.5393113, y: 0.04147291, z: 1.5570002}
-  m_Center: {x: -0.009901822, y: -0.0360744, z: 0.004851818}
+  m_Size: {x: 1.5393113, y: 0.13432312, z: 1.5570002}
+  m_Center: {x: -0.009901822, y: -0.012107849, z: 0.004851818}
 --- !u!114 &4420502116239236146
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -109,18 +108,6 @@ MonoBehaviour:
   animator: {fileID: 7982455858912708814}
   harvestRange: 5
   moneyByHarvest: 100
---- !u!114 &-2390718740406438187
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4114616655889148918}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fdc52c434e81fc145978b3cf32cc57ef, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!95 &7982455858912708814
 Animator:
   serializedVersion: 3

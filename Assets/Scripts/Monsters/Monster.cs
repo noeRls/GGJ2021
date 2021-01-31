@@ -57,7 +57,6 @@ public class Monster : MonoBehaviour
 
     public void Destroy()
     {
-        manager.onDayStart -= onDayStart;
         Destroy(gameObject);
     }
 
