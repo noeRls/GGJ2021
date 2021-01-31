@@ -333,6 +333,7 @@ MonoBehaviour:
   running: 0
   moving: 1
   dead: 0
+  lockMouse: 1
 --- !u!1001 &712949511
 PrefabInstance:
   m_ObjectHideFlags: 0
