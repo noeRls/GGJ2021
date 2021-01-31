@@ -221,7 +221,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6849324791762520707}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0.068169944, y: 0.69547397, z: 0.0665684, w: 0.7122061}
   m_LocalPosition: {x: 0, y: 1.16, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -260,7 +260,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d7f20a21c5ee4b4e86d531f30082d1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lockMouse: 1
   baseGravity: 20
   baseLookSpeed: 2
   baseLookXLimit: 80
@@ -268,7 +267,7 @@ MonoBehaviour:
   increaserEndurance: 5
   moveDirection: {x: 0, y: 0, z: 0}
   playerCamera: {fileID: 6849324790729374512}
-  playerController: {fileID: 0}
+  playerController: {fileID: 6849324791762520706}
   flashlight: {fileID: 2126942964}
   isFlashlightOn: 1
 --- !u!114 &7834023843258993510
@@ -286,8 +285,8 @@ MonoBehaviour:
   hp: 100
   endurance: 100
   money: 666
-  walkSpeed: 6
-  runSpeed: 10
+  walkSpeed: 8
+  runSpeed: 12
   jumpSpeed: 8
   soundDistanceRunning: 10
   soundDistanceWalking: 7
@@ -296,6 +295,7 @@ MonoBehaviour:
   running: 0
   moving: 1
   dead: 0
+  lockMouse: 1
 --- !u!65 &2110749200955200688
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -321,3 +321,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f50a41d3d742d5847815f25e2835d83e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  unlimited: 0
