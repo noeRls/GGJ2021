@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8898569976664332815}
   - component: {fileID: 784292647870207634}
   - component: {fileID: 438532190}
+  - component: {fileID: -3356884412374144549}
   m_Layer: 0
   m_Name: FlareGun
   m_TagString: Untagged
@@ -59,6 +60,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 10, y: 10, z: 10}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &-3356884412374144549
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8898569976664332812}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fdc52c434e81fc145978b3cf32cc57ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hudManager: {fileID: 0}
 --- !u!1001 &8898569976886185229
 PrefabInstance:
   m_ObjectHideFlags: 0

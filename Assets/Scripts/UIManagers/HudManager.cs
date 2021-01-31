@@ -14,16 +14,18 @@ public class HudManager : MonoBehaviour
 
     public Slider hpDisplay;
     public Slider enduranceDisplay;
-    public Text stateDisplay;
+    public Text pickupHint;
 
     public Dictionary<ItemType, PossessionListItemInfo> tamer = new Dictionary<ItemType, PossessionListItemInfo>();
 
     // Start is called before the first frame update
     void Start()
     {
+        pickupHint.gameObject.SetActive(false);
         playerStats = GameObject
             .FindGameObjectWithTag("Player")
             .GetComponent<PlayerStats>();
+
         database = GameObject
             .FindGameObjectWithTag("Database")
             .GetComponent<ItemList>();
@@ -54,5 +56,10 @@ public class HudManager : MonoBehaviour
         {
             tamer[item].qte.text = $"{playerStats.Inventory()[item]}";
         }
+    }
+
+    public void TogglePickupHint(bool isActivated)
+    {
+        pickupHint.gameObject.SetActive(isActivated);
     }
 }
