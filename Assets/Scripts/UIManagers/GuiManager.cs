@@ -40,8 +40,8 @@ public class GuiManager : MonoBehaviour
 
     public void TogglePause()
     {
-        bool isPauseEnabled = stateScreen.CurrentState() == StateScreenManager.State.WIN;
-        stateScreen.Summon(isPauseEnabled ? StateScreenManager.State.OFF : StateScreenManager.State.WIN);
+        bool isPauseEnabled = stateScreen.CurrentState() == StateScreenManager.State.PAUSE;
+        stateScreen.Summon(isPauseEnabled ? StateScreenManager.State.OFF : StateScreenManager.State.PAUSE);
         hud.enabled = isPauseEnabled;
     }
 
