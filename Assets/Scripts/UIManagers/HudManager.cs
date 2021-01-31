@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class HudManager : MonoBehaviour
 {
-    public PlayerStats playerStats;
+    private PlayerStats playerStats;
 
     public Slider hpDisplay;
     public Slider enduranceDisplay;
@@ -17,6 +17,7 @@ public class HudManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        playerStats = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>();
     }
 
     // Update is called once per frame

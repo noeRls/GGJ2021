@@ -8,11 +8,12 @@ public class GuiManager : MonoBehaviour
     public Canvas shop;
 
     public ShopTrigger shopTrigger;
-    public PlayerStats playerStats;
+    private PlayerStats playerStats;
 
         // Start is called before the first frame update
     void Start()
     {
+        playerStats = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>();
         ExitShop();
     }
 
