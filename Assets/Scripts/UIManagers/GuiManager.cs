@@ -21,8 +21,8 @@ public class GuiManager : MonoBehaviour
             .FindGameObjectWithTag("Player")
             .GetComponent<PlayerStats>();
 
-        hud.enabled = true;
-        shop.enabled = false;
+        hud.gameObject.SetActive(true);
+        shop.gameObject.SetActive(false);
         stateScreen.Summon(StateScreenManager.State.OFF);
     }
 
@@ -31,7 +31,7 @@ public class GuiManager : MonoBehaviour
     {
         if (Input.GetKeyDown("escape"))
         {
-            if (shop.enabled)
+            if (shop.isActiveAndEnabled)
                 ExitShop();
             else
                 TogglePause();
@@ -42,22 +42,24 @@ public class GuiManager : MonoBehaviour
     {
         bool isPauseEnabled = stateScreen.CurrentState() == StateScreenManager.State.PAUSE;
         stateScreen.Summon(isPauseEnabled ? StateScreenManager.State.OFF : StateScreenManager.State.PAUSE);
-        hud.enabled = isPauseEnabled;
+        hud.gameObject.SetActive(isPauseEnabled);
     }
 
     public void ExitShop()
     {
-        playerStats.Unfreeze(); 
-        hud.enabled = true;
-        shop.enabled = false;
+        playerStats.Unfreeze();
+        hud.gameObject.SetActive(true);
+        shop.gameObject.SetActive(false);
+
         isShopInteractable = false;
     }
 
     public void EnterShop()
     {
         playerStats.Freeze();
-        hud.enabled = false;
-        shop.enabled = true;
+        hud.gameObject.SetActive(false);
+        shop.gameObject.SetActive(true);
+
         isShopInteractable = true;
     }
 }

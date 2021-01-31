@@ -20,7 +20,7 @@ public class StateScreenManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        quitButton.onClick.AddListener(OnButtonExitClick);
+        quitButton.onClick.AddListener(OnButtonQuitClick);
         resumeButton.onClick.AddListener(OnButtonResumeClick);
         startOverButton.onClick.AddListener(OnButtonStartOverClick);
 
@@ -67,12 +67,12 @@ public class StateScreenManager : MonoBehaviour
         else
             playerStats.Unfreeze();
 
-        actual.enabled = !isScreenDisabled;
+        actual.gameObject.SetActive(!isScreenDisabled);
     }
 
     public State CurrentState() => currentState;
 
-    private void OnButtonExitClick()
+    private void OnButtonQuitClick()
     {
         Application.Quit();
     }
