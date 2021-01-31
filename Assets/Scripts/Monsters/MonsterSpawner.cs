@@ -19,8 +19,11 @@ public enum SpawnRate
 public class MonsterSpawner : MonoBehaviour
 {
     public float radius = 10f;
+    public float increaseByRound = 0.5f;
     public int monsterSpawned = 10;
     public List<SpawnMobInfo> mobs;
+    private GameManager gameManager;
+    public bool spiderSpawner = false;
 
     SpawnMobInfo getRandomMonster()
     {
@@ -77,7 +80,8 @@ public class MonsterSpawner : MonoBehaviour
 
     public void spawnMonsters()
     {
-        for (int i = 0; i < monsterSpawned; i++)
+        float ratioBonus = gameManager.days - 1 * increaseByRound;
+        for (int i = 0; i < monsterSpawned * (1 + ratioBonus); i++)
         {
             SpawnMobInfo mob = getRandomMonster();
             Vector3 spawnPos = getRandomSpawnPosition(mob.isSpider ? 1 : 0);
@@ -87,6 +91,13 @@ public class MonsterSpawner : MonoBehaviour
 
     private void Start()
     {
-        spawnMonsters();
+        gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
+        if (spiderSpawner)
+        {
+            spawnMonsters();
+        } else
+        {
+            gameManager.onNightStart += spawnMonsters;
+        }
     }
 }

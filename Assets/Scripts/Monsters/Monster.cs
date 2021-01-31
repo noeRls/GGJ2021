@@ -50,6 +50,16 @@ public class Monster : MonoBehaviour
         playerStats = player.GetComponent<PlayerStats>();
         updateDefaultTarget();
         target = getDefaultTarget();
+        GameManager manager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
+        manager.onDayStart += onDayStart;
+    }
+
+    void onDayStart()
+    {
+        if (!isTrapped)
+        {
+            Destroy(gameObject);
+        }
     }
 
     Vector3 getDefaultTarget()
