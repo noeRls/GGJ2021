@@ -97,5 +97,9 @@ public class PlayerControl : MonoBehaviour
         playerCamera.transform.localRotation = Quaternion.Euler(rotationX, 0, 0);
         transform.rotation *= Quaternion.Euler(0, Input.GetAxis("Mouse X") * baseLookSpeed, 0);
         flashlight.transform.localRotation = Quaternion.Euler(rotationX, 0, 0);
+
+        Vector3 newRotation = transform.rotation.eulerAngles;
+        newRotation.z = 0;
+        transform.rotation = Quaternion.Euler(newRotation); // freeze Z
     }
 }
