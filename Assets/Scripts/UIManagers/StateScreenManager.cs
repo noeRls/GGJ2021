@@ -14,7 +14,6 @@ public class StateScreenManager : MonoBehaviour
     public Button startOverButton;
 
     public Text title;
-    private Button[] pauseMenuButtons;
     public Canvas actual;
 
     // Start is called before the first frame update
@@ -27,8 +26,6 @@ public class StateScreenManager : MonoBehaviour
         playerStats = GameObject
             .FindGameObjectWithTag("Player")
             .GetComponent<PlayerStats>();
-
-        pauseMenuButtons = actual.GetComponentsInChildren<Button>();
     }
 
     public void Summon(State state)
@@ -56,12 +53,7 @@ public class StateScreenManager : MonoBehaviour
     private void TogglePause(bool isScreenDisabled)
     {
         Time.timeScale = isScreenDisabled ? 1f : 0f;
-
-        foreach (Button b in pauseMenuButtons)
-        {
-            b.interactable = !isScreenDisabled;
-        }
-
+         
         if (!isScreenDisabled)
             playerStats.Freeze();
         else

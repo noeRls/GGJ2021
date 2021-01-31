@@ -7,7 +7,6 @@ public class GuiManager : MonoBehaviour
 {
     public Canvas hud;
     public Canvas shop;
-    public bool isShopInteractable = false;
 
     public StateScreenManager stateScreen;
 
@@ -50,8 +49,6 @@ public class GuiManager : MonoBehaviour
         playerStats.Unfreeze();
         hud.gameObject.SetActive(true);
         shop.gameObject.SetActive(false);
-
-        isShopInteractable = false;
     }
 
     public void EnterShop()
@@ -59,7 +56,5 @@ public class GuiManager : MonoBehaviour
         playerStats.Freeze();
         hud.gameObject.SetActive(false);
         shop.gameObject.SetActive(true);
-
-        isShopInteractable = true;
     }
 }
