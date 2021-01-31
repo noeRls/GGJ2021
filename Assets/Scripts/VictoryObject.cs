@@ -13,9 +13,9 @@ public class VictoryObject : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        // transform.position = Vector3.zero;
-        // transform.rotation = Quaternion.identity;
-        // transform.SetParent(possiblePosition[Random.Range(0, possiblePosition.Count - 1)]);
+        transform.position = Vector3.zero;
+        transform.rotation = Quaternion.identity;
+        transform.SetParent(possiblePosition[Random.Range(0, possiblePosition.Count - 1)], false);
         manager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
         meshs = GetComponentsInChildren<MeshRenderer>();
         onDayStart();

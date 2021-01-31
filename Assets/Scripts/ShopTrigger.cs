@@ -5,6 +5,7 @@ using UnityEngine;
 public class ShopTrigger : MonoBehaviour
 {
     public GuiManager guiManager;
+    public AmbientSound ambiantSound;
     
     // Start is called before the first frame update
     void Start()
@@ -18,6 +19,7 @@ public class ShopTrigger : MonoBehaviour
             return;
 
         guiManager.EnterShop();
+        ambiantSound.PlayShopAmbient();
     }
 
     private void OnTriggerExit(Collider shouldBePlayer)
@@ -26,5 +28,6 @@ public class ShopTrigger : MonoBehaviour
             return;
 
         guiManager.ExitShop();
+        ambiantSound.StopPlayingShopAmbiant();
     }
 }

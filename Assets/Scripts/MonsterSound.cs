@@ -7,6 +7,8 @@ public class MonsterSound : MonoBehaviour
     private AudioSource MonsterSource;
     public AudioClip WalkMonster;
     public AudioClip RunMonster;
+    public float soundIntervalWalking = 10;
+    public float soundIntervalRunning = 5;
     private float SoundTimer = 10;
     private Monster stat;
 
@@ -33,13 +35,14 @@ public class MonsterSound : MonoBehaviour
             if (Run)
             {
                 MonsterSource.clip = RunMonster;
+                SoundTimer = soundIntervalRunning;
             }
             else
             {
                 MonsterSource.clip = WalkMonster;
+                SoundTimer = soundIntervalWalking;
             }
             MonsterSource.Play();
-            SoundTimer = 10;
         }
     }
 }

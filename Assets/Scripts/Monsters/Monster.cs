@@ -16,7 +16,8 @@ public class Monster : MonoBehaviour
     public Vector3 target = new Vector3(0, 0, 0);
     protected Vector3? playerPos = null;
     private bool isTrapped = false;
-    
+    private GameManager manager;
+
     private Vector3 mapCenter = new Vector3(500, 122, 500);
     public Vector3 defaultTarget;
 
@@ -54,11 +55,17 @@ public class Monster : MonoBehaviour
         manager.onDayStart += onDayStart;
     }
 
+    public void Destroy()
+    {
+        manager.onDayStart -= onDayStart;
+        Destroy(gameObject);
+    }
+
     void onDayStart()
     {
         if (!isTrapped)
         {
-            Destroy(gameObject);
+            Destroy();
         }
     }
 
