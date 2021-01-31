@@ -59,7 +59,7 @@ public class PlayerItemsControl : MonoBehaviour
         foreach (ItemInfo itemInfo in itemLists.items)
         {
             if (Input.GetKeyDown(itemInfo.activationKey) &&
-                (stats.inventory[itemInfo.itemType] > 0 || unlimited)
+                (stats.Inventory()[itemInfo.itemType] > 0 || unlimited)
             )
             {
                 removePreviewIfAny();
@@ -68,7 +68,7 @@ public class PlayerItemsControl : MonoBehaviour
                     previewTrap(itemInfo);
                 } else
                 {
-                    stats.inventory[itemInfo.itemType] -= 1;
+                    stats.Inventory()[itemInfo.itemType] -= 1;
                     useDrug(itemInfo);
                 }
             }
@@ -78,7 +78,7 @@ public class PlayerItemsControl : MonoBehaviour
         {
             if (preview != null)
             {
-                stats.inventory[preview.Value.item.itemType] -= 1;
+                stats.Inventory()[preview.Value.item.itemType] -= 1;
                 preview.Value.preview.confirm();
                 preview = null;
             }
