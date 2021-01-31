@@ -49,4 +49,10 @@ public class PlayerStats : MonoBehaviour
         canMove = true;
         lockMouse = true;
     }
+
+    public void BuyItem(ItemInfo item)
+    {
+        money -= item.price;
+        //todo increment item
+    }
 }

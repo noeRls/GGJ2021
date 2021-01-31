@@ -13,7 +13,7 @@ public class ShopManager : MonoBehaviour
     public Text description;
     public Text moneyDisplay;
 
-    ItemInfo currentlySelected;
+    ItemInfo currentlySelectedItem;
 
     public GuiManager guiManager;
     private ItemList database;
@@ -25,8 +25,6 @@ public class ShopManager : MonoBehaviour
         playerStats = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>();
         database = GameObject.FindGameObjectWithTag("Database").GetComponent<ItemList>();
 
-        moneyDisplay.text = $"{playerStats.money} €";
-
         EventTrigger.Entry entry = new EventTrigger.Entry();
         entry.eventID = EventTriggerType.PointerClick;
         entry.callback.AddListener(data => { OnItemGridElementClick((PointerEventData)data); });
@@ -36,6 +34,7 @@ public class ShopManager : MonoBehaviour
             GameObject createdGridElement = Instantiate(prefabItemGridElement);
             ItemGridElementInfo createdGridElementInfo = createdGridElement.GetComponent<ItemGridElementInfo>();
 
+            createdGridElementInfo.itemImage.sprite = item.icon;
             createdGridElementInfo.itemName.text = item.name;
             createdGridElementInfo.itemInfo = item;
 
@@ -48,13 +47,22 @@ public class ShopManager : MonoBehaviour
         }
 
         SelectItem(database.items[0]);
+        buyButton.onClick.AddListener(BuyItem);
         exitButton.onClick.AddListener(ExitShop);
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Update()
     {
-        
+        moneyDisplay.text = $"{playerStats.money} €";
+    }
+
+    public void BuyItem()
+    {
+        if (currentlySelectedItem.price < playerStats.money)
+        {
+            playerStats.BuyItem(currentlySelectedItem);
+        }
+        SelectItem(currentlySelectedItem);
     }
 
     public void OnItemGridElementClick(PointerEventData eventData)
@@ -64,11 +72,11 @@ public class ShopManager : MonoBehaviour
 
     private void SelectItem(ItemInfo item)
     {
-        currentlySelected = item;
-        description.text = currentlySelected.description;
-        buyButton.GetComponentInChildren<Text>().text = $"Buy ({currentlySelected.price} €)";
+        currentlySelectedItem = item;
+        description.text = currentlySelectedItem.description;
+        buyButton.GetComponentInChildren<Text>().text = $"Buy ({currentlySelectedItem.price} €)";
 
-        buyButton.interactable = currentlySelected.price < playerStats.money;
+        buyButton.interactable = currentlySelectedItem.price < playerStats.money;
     }
 
     private void ExitShop()

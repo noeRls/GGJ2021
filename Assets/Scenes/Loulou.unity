@@ -3775,29 +3775,34 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4308028665518965159, guid: 5623f8156312b0140be13bf2c3d89714,
         type: 3}
-      propertyPath: items.Array.data[0].price
-      value: 982137
-      objectReference: {fileID: 0}
+      propertyPath: items.Array.data[0].icon
+      value: 
+      objectReference: {fileID: 21300000, guid: 33ef1d3d2aa902341a0bd97617dcc390,
+        type: 3}
     - target: {fileID: 4308028665518965159, guid: 5623f8156312b0140be13bf2c3d89714,
         type: 3}
-      propertyPath: items.Array.data[1].price
-      value: 56
-      objectReference: {fileID: 0}
+      propertyPath: items.Array.data[1].icon
+      value: 
+      objectReference: {fileID: 21300000, guid: 19d6c7c40845eb145b314fda17ded1bd,
+        type: 3}
     - target: {fileID: 4308028665518965159, guid: 5623f8156312b0140be13bf2c3d89714,
         type: 3}
-      propertyPath: items.Array.data[2].price
-      value: 90
-      objectReference: {fileID: 0}
+      propertyPath: items.Array.data[2].icon
+      value: 
+      objectReference: {fileID: 21300000, guid: 4406c66b743f38b41b83c499a1163127,
+        type: 3}
     - target: {fileID: 4308028665518965159, guid: 5623f8156312b0140be13bf2c3d89714,
         type: 3}
-      propertyPath: items.Array.data[3].price
-      value: 877878
-      objectReference: {fileID: 0}
+      propertyPath: items.Array.data[3].icon
+      value: 
+      objectReference: {fileID: 21300000, guid: 19d6c7c40845eb145b314fda17ded1bd,
+        type: 3}
     - target: {fileID: 4308028665518965159, guid: 5623f8156312b0140be13bf2c3d89714,
         type: 3}
-      propertyPath: items.Array.data[4].price
-      value: 90
-      objectReference: {fileID: 0}
+      propertyPath: items.Array.data[4].icon
+      value: 
+      objectReference: {fileID: 21300000, guid: 33ef1d3d2aa902341a0bd97617dcc390,
+        type: 3}
     - target: {fileID: 6582832060233280147, guid: 5623f8156312b0140be13bf2c3d89714,
         type: 3}
       propertyPath: m_Name

@@ -44,33 +44,33 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   items:
-  - price: 0
+  - price: 982137
     name: Cyka
-    imagePath: podqkpoqzkd
+    icon: {fileID: 0}
     description: tamer
     prefab: {fileID: 0}
     category: 0
-  - price: 0
+  - price: 56
     name: Blyat
-    imagePath: pokpok
+    icon: {fileID: 0}
     description: nik
     prefab: {fileID: 0}
     category: 0
-  - price: 0
+  - price: 90
     name: Tamer
-    imagePath: pokpok
+    icon: {fileID: 0}
     description: cyka
     prefab: {fileID: 0}
     category: 0
-  - price: 0
+  - price: 877878
     name: Tamer
-    imagePath: pokpok
+    icon: {fileID: 0}
     description: cyka
     prefab: {fileID: 0}
     category: 0
-  - price: 0
+  - price: 90
     name: Tamer
-    imagePath: pokpok
+    icon: {fileID: 0}
     description: cyka
     prefab: {fileID: 0}
     category: 0
