@@ -140,8 +140,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 306ac72062b9aa54891befcb2d7fa046, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  itemName: {fileID: 2073846783587691355}
   itemDescription: {fileID: 0}
-  itemImage: {fileID: 0}
+  itemImage: {fileID: 2073846782654998328}
   itemInfo:
     price: 0
     name: 
@@ -165,7 +166,18 @@ MonoBehaviour:
   - eventID: 4
     callback:
       m_PersistentCalls:
-        m_Calls: []
+        m_Calls:
+        - m_Target: {fileID: 11500000, guid: 06277d3a3efe5be49a94c2102fbcb507, type: 3}
+          m_MethodName: set_name
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: OnPointerClick
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &2073846782654998334
 GameObject:
   m_ObjectHideFlags: 0

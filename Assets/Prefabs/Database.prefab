@@ -46,7 +46,7 @@ MonoBehaviour:
   items:
   - price: 10
     name: Wall
-    imagePath: pokppok
+    icon: {fileID: 0}
     description: Simple Wall
     prefab: {fileID: 6612248245404518628, guid: 0f5870fe651dae44286b2b788b2cfbe0,
       type: 3}
@@ -55,7 +55,7 @@ MonoBehaviour:
     activationKey: 119
   - price: 10
     name: Healthpack
-    imagePath: ede
+    icon: {fileID: 0}
     description: Get a boost of HP !
     prefab: {fileID: 0}
     category: 0
@@ -63,7 +63,7 @@ MonoBehaviour:
     activationKey: 120
   - price: 10
     name: Runner boost
-    imagePath: dzzad
+    icon: {fileID: 0}
     description: Run faster
     prefab: {fileID: 0}
     category: 0
@@ -71,7 +71,7 @@ MonoBehaviour:
     activationKey: 99
   - price: 10
     name: Wolf Trap
-    imagePath: dzzad
+    icon: {fileID: 0}
     description: Useful to trap monsters
     prefab: {fileID: 4114616655889148918, guid: 7defd3cc67a6b5f45a910693e06d17da,
       type: 3}

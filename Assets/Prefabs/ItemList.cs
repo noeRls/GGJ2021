@@ -15,7 +15,7 @@ public struct ItemInfo
 {
     public int price;
     public string name;
-    public string imagePath;
+    public Sprite icon;
     public string description;
     public GameObject prefab;
     public ItemCategory category;

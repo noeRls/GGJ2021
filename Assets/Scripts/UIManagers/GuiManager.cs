@@ -8,26 +8,32 @@ public class GuiManager : MonoBehaviour
     public Canvas shop;
 
     public ShopTrigger shopTrigger;
+    private PlayerStats playerStats;
 
         // Start is called before the first frame update
     void Start()
     {
-        hud.enabled = true;
-        shop.enabled = false;
+        playerStats = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>();
+        ExitShop();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (shopTrigger.isPlayerIn)
-        {
-            hud.enabled = false;
-            shop.enabled = true;
-        }
-        else
-        {
-            hud.enabled = true;
-            shop.enabled = false;
-        }
+
+    }
+
+    public void ExitShop()
+    {
+        playerStats.Unfreeze(); 
+        hud.enabled = true;
+        shop.enabled = false;
+    }
+
+    public void EnterShop()
+    {
+        playerStats.Freeze();
+        hud.enabled = false;
+        shop.enabled = true;
     }
 }

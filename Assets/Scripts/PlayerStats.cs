@@ -8,7 +8,6 @@ public class PlayerStats : MonoBehaviour
 
     public float walkSpeed = 6f;
     public float runSpeed = 10f;
-
     public float jumpSpeed = 8f;
 
     public float soundDistanceRunning = 20f;
@@ -20,6 +19,8 @@ public class PlayerStats : MonoBehaviour
     public bool running = false;
     public bool moving = false;
     public bool dead = false;
+
+    public bool lockMouse = true;
 
     private float runnerPotionTimeRemaining = 0.0f;
 
@@ -37,6 +38,24 @@ public class PlayerStats : MonoBehaviour
             dead = true;
             canMove = false;
         }
+    }
+
+    public void Freeze()
+    {
+        canMove = false;
+        lockMouse = false;
+    }
+
+    public void Unfreeze()
+    {
+        canMove = true;
+        lockMouse = true;
+    }
+
+    public void BuyItem(ItemInfo item)
+    {
+        money -= item.price;
+        //todo increment item
     }
 
     public void useHealthPack()

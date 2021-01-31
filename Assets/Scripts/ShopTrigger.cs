@@ -5,9 +5,8 @@ using UnityEngine;
 public class ShopTrigger : MonoBehaviour
 {
     public Collider player;
+    public GuiManager guiManager;
     
-    public bool isPlayerIn = false;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -19,7 +18,7 @@ public class ShopTrigger : MonoBehaviour
         if (shouldBePlayer != player)
             return;
 
-        isPlayerIn = true;
+        guiManager.EnterShop();
     }
 
     private void OnTriggerExit(Collider shouldBePlayer)
@@ -27,7 +26,7 @@ public class ShopTrigger : MonoBehaviour
         if (shouldBePlayer != player)
             return;
 
-        isPlayerIn = false;
+        guiManager.ExitShop();
     }
 
     // Update is called once per frame
