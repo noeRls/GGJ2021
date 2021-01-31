@@ -10,18 +10,14 @@ public class PlayerControl : MonoBehaviour
     public float baseLookSpeed = 2f;
     public float baseLookXLimit = 80f;
 
-    public float endurance = 100f;
     public float decreaserEndurance = 20f;
     public float increaserEndurance = 5f;
-
-    public bool canRun = true;
-    public bool canMove = true;
 
     public Vector3 moveDirection = new Vector3();
     float rotationX = 0f;
 
     public Camera playerCamera;
-    public CharacterController characterController;
+    public CharacterController playerController;
 
     public GameObject flashlight;
     public bool isFlashlightOn = true;
@@ -31,25 +27,29 @@ public class PlayerControl : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        characterController = GetComponent<CharacterController>();
+        playerController = GetComponent<CharacterController>();
+        stats = GetComponent<PlayerStats>();
 
         if (lockMouse)
         {
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
         }
-        stats = GetComponent<PlayerStats>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (!stats.canMove)
+        {
+            stats.running = false;
+            stats.moving = false;
+            return;
+        }
+        
         bool doesWannaRun = Input.GetKey(KeyCode.LeftShift);
         bool doesMove = Mathf.Abs(Input.GetAxis("Vertical")) + Mathf.Abs(Input.GetAxis("Horizontal")) > 0;
         bool isJumping = Input.GetKey(KeyCode.Space);
-
-        Vector3 forward = transform.TransformDirection(Vector3.forward);
-        Vector3 right = transform.TransformDirection(Vector3.right);
 
         bool willRun = false;
 
@@ -59,54 +59,49 @@ public class PlayerControl : MonoBehaviour
 
         if (doesWannaRun)
         {
-            if (endurance > 0)
+            if (stats.endurance > 0)
             {
                 if (doesMove)
                 {
-                    endurance -= decreaserEndurance * Time.deltaTime;
+                    stats.endurance -= decreaserEndurance * Time.deltaTime;
                     willRun = true;
                 }
             } else
             {
-                endurance = 0;
+                stats.endurance = 0;
             }
         } 
-        else if (endurance < 100)
+        else if (stats.endurance < 100)
         {
-            endurance += increaserEndurance * Time.deltaTime;
+            stats.endurance += increaserEndurance * Time.deltaTime;
         }
+
         stats.running = willRun;
         stats.moving = doesMove;
 
-        float curSpeedX = canMove ? (willRun ? stats.runSpeed : stats.walkSpeed) * Input.GetAxis("Vertical") : 0;
-        float curSpeedY = canMove ? (willRun ? stats.runSpeed : stats.walkSpeed) * Input.GetAxis("Horizontal") : 0;
+        float moveSpeedY = moveDirection.y;
 
-        float moveDirectionY = moveDirection.y;
-        moveDirection = (forward * curSpeedX) + (right * curSpeedY);
+        moveDirection = (transform.TransformDirection(Vector3.forward) 
+            * (willRun ? stats.getRunSpeed() : stats.getWalkSpeed()) 
+            * Input.GetAxis("Vertical")) 
+            + (transform.TransformDirection(Vector3.right) 
+            * (willRun ? stats.getRunSpeed() : stats.getWalkSpeed()) 
+            * Input.GetAxis("Horizontal"));
 
-        if (isJumping && canMove && characterController.isGrounded)
-        {
-            moveDirection.y = stats.jumpSpeed;
-        } else
-        {
-            moveDirection.y = moveDirectionY;
-        }
+        moveDirection.y = isJumping && playerController.isGrounded 
+            ? stats.jumpSpeed 
+            : moveSpeedY;
 
-        if (!characterController.isGrounded)
-        {
+        if (!playerController.isGrounded)
             moveDirection.y -= baseGravity * Time.deltaTime;
-        }
 
-        characterController.Move(moveDirection * Time.deltaTime);
+        playerController.Move(moveDirection * Time.deltaTime);
 
-        if (canMove)
-        {
-            rotationX += -Input.GetAxis("Mouse Y") * baseLookSpeed;
-            rotationX = Mathf.Clamp(rotationX, -baseLookXLimit, baseLookXLimit);
-            playerCamera.transform.localRotation = Quaternion.Euler(rotationX, 0, 0);
-            transform.rotation *= Quaternion.Euler(0, Input.GetAxis("Mouse X") * baseLookSpeed, 0);
-        }
-
+        rotationX += -Input.GetAxis("Mouse Y") * baseLookSpeed;
+        rotationX = Mathf.Clamp(rotationX, -baseLookXLimit, baseLookXLimit);
+        
+        playerCamera.transform.localRotation = Quaternion.Euler(rotationX, 0, 0);
+        transform.rotation *= Quaternion.Euler(0, Input.GetAxis("Mouse X") * baseLookSpeed, 0);
         flashlight.transform.localRotation = Quaternion.Euler(rotationX, 0, 0);
     }
 }

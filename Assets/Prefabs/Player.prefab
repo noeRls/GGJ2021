@@ -206,6 +206,7 @@ GameObject:
   - component: {fileID: 6849324791762520704}
   - component: {fileID: 7834023843258993510}
   - component: {fileID: 2110749200955200688}
+  - component: {fileID: 7644486368188183480}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -263,14 +264,11 @@ MonoBehaviour:
   baseGravity: 20
   baseLookSpeed: 2
   baseLookXLimit: 80
-  endurance: 100
   decreaserEndurance: 20
   increaserEndurance: 5
-  canRun: 1
-  canMove: 1
   moveDirection: {x: 0, y: 0, z: 0}
   playerCamera: {fileID: 6849324790729374512}
-  characterController: {fileID: 6849324791762520706}
+  playerController: {fileID: 0}
   flashlight: {fileID: 2126942964}
   isFlashlightOn: 1
 --- !u!114 &7834023843258993510
@@ -286,14 +284,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hp: 100
+  endurance: 100
+  money: 666
   walkSpeed: 6
   runSpeed: 10
   jumpSpeed: 8
-  endurance: 100
   soundDistanceRunning: 10
   soundDistanceWalking: 7
+  canRun: 1
+  canMove: 1
   running: 0
   moving: 1
+  dead: 0
 --- !u!65 &2110749200955200688
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -307,3 +309,15 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1.4634061, z: 1}
   m_Center: {x: 0, y: -0.23170292, z: 0}
+--- !u!114 &7644486368188183480
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6849324791762520707}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f50a41d3d742d5847815f25e2835d83e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
