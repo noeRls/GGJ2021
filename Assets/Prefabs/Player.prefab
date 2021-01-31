@@ -285,7 +285,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hp: 100
   endurance: 100
-  money: 666
+  money: 10
   walkSpeed: 8
   runSpeed: 12
   jumpSpeed: 8
