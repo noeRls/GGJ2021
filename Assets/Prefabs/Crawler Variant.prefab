@@ -132,9 +132,13 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 514631618, guid: 5baae45fbefa3f44d9b87651bfa344e2, type: 3}
+      propertyPath: RunMonster
+      value: 
+      objectReference: {fileID: 8300000, guid: 2ad53924289f0bf49b60f60b5fecf012, type: 3}
+    - target: {fileID: 514631618, guid: 5baae45fbefa3f44d9b87651bfa344e2, type: 3}
       propertyPath: WalkMonster
       value: 
-      objectReference: {fileID: 8300000, guid: 75a3ab430b239a5469fa9a4619537a50, type: 3}
+      objectReference: {fileID: 8300000, guid: 6519c1c2df13476479fccb3a2d809b94, type: 3}
     - target: {fileID: 4562137127143830386, guid: 5baae45fbefa3f44d9b87651bfa344e2,
         type: 3}
       propertyPath: m_Name

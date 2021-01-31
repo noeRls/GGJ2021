@@ -44,6 +44,8 @@ MonoBehaviour:
   hearingRatio: 1
   speedWalk: 1
   speedRun: 2
+  target: {x: 0, y: 0, z: 0}
+  defaultTarget: {x: 0, y: 0, z: 0}
   chargeSetupTime: 0.3
   chargeInterval: 5
   speedCharge: 10
@@ -54,10 +56,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 514631617, guid: 5baae45fbefa3f44d9b87651bfa344e2, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 514631618, guid: 5baae45fbefa3f44d9b87651bfa344e2, type: 3}
+      propertyPath: RunMonster
+      value: 
+      objectReference: {fileID: 8300000, guid: 12613fdada9d8634399f14027a0fe879, type: 3}
+    - target: {fileID: 514631618, guid: 5baae45fbefa3f44d9b87651bfa344e2, type: 3}
+      propertyPath: WalkMonster
+      value: 
+      objectReference: {fileID: 8300000, guid: 756c6210b4c11144b85a2b612c0e3757, type: 3}
     - target: {fileID: 4562137127143830386, guid: 5baae45fbefa3f44d9b87651bfa344e2,
         type: 3}
       propertyPath: m_Name
-      value: Pig
+      value: Pig Variant
       objectReference: {fileID: 0}
     - target: {fileID: 4562137127143830386, guid: 5baae45fbefa3f44d9b87651bfa344e2,
         type: 3}

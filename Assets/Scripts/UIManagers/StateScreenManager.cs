@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class StateScreenManager : MonoBehaviour
@@ -73,7 +74,7 @@ public class StateScreenManager : MonoBehaviour
 
     private void OnButtonExitClick()
     {
-        //todo
+        Application.Quit();
     }
 
     private void OnButtonResumeClick()
@@ -83,7 +84,8 @@ public class StateScreenManager : MonoBehaviour
 
     private void OnButtonStartOverClick()
     {
-        //todox
+        guiManager.TogglePause();
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     public enum State

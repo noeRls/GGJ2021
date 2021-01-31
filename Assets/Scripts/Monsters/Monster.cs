@@ -8,6 +8,7 @@ public class Monster : MonoBehaviour
     public float hearingRatio = 1;
     public float speedWalk = 1;
     public float speedRun = 2;
+    private float refreshTimeout = 0;
 
     private GameObject player;
     private PlayerStats playerStats;
@@ -18,6 +19,11 @@ public class Monster : MonoBehaviour
     
     private Vector3 mapCenter = new Vector3(500, 122, 500);
     public Vector3 defaultTarget;
+
+    private void Awake()
+    {
+        NavMesh.pathfindingIterationsPerFrame = 500;
+    }
 
     public float getTargetDistance()
     {
@@ -44,6 +50,16 @@ public class Monster : MonoBehaviour
         playerStats = player.GetComponent<PlayerStats>();
         updateDefaultTarget();
         target = getDefaultTarget();
+        GameManager manager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
+        manager.onDayStart += onDayStart;
+    }
+
+    void onDayStart()
+    {
+        if (!isTrapped)
+        {
+            Destroy(gameObject);
+        }
     }
 
     Vector3 getDefaultTarget()
@@ -63,7 +79,7 @@ public class Monster : MonoBehaviour
 
     Vector3 getCloseRandomPosition()
     {
-        return transform.position + new Vector3(Random.Range(0.0f, 100f), 0, Random.Range(0.0f, 100f));
+        return transform.position + new Vector3(Random.Range(0.0f, 10f), 0, Random.Range(0.0f, 10f));
     }
 
     void updateDefaultTarget()
@@ -139,11 +155,17 @@ public class Monster : MonoBehaviour
     protected void monsterUpdate()
     {
         if (isTrapped) return;
+        Vector3 lastTarget = target;
         updatePlayerPos();
         updateTarget();
         checkTargetDestination();
         setSpeed();
-        navMeshAgent.SetDestination(target);
+        refreshTimeout -= Time.deltaTime;
+        if (target != lastTarget && refreshTimeout < 0)
+        {
+            refreshTimeout = 0.1f;
+            navMeshAgent.SetDestination(target);
+        }
     }
 
     // Update is called once per frame
