@@ -40,6 +40,6 @@ public class GetCoin : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         CoinAudio.Stop();
         Destroy(gameObject);
-        stats.money += 10;
+        stats.money += 50;
     }
 }
