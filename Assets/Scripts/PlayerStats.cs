@@ -22,6 +22,8 @@ public class PlayerStats : MonoBehaviour
 
     public bool lockMouse = true;
 
+    private float runnerPotionTimeRemaining = 0.0f;
+
     public float getSoundDistance()
     {
         if (!moving) return 0;
@@ -54,5 +56,29 @@ public class PlayerStats : MonoBehaviour
     {
         money -= item.price;
         //todo increment item
+    }
+
+    public void useHealthPack()
+    {
+        hp = Mathf.Min(100f, hp + 50);
+    }
+
+    public void useRunnerPotion()
+    {
+        runnerPotionTimeRemaining = 60 * 2;
+    }
+
+    private void Update()
+    {
+        runnerPotionTimeRemaining -= Time.deltaTime;
+    }
+
+    public float getWalkSpeed()
+    {
+        return runnerPotionTimeRemaining > 0 ? walkSpeed * 2 : walkSpeed;
+    }
+    public float getRunSpeed()
+    {
+        return runnerPotionTimeRemaining > 0 ? runSpeed * 2 : runSpeed;
     }
 }

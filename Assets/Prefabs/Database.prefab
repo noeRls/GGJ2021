@@ -44,33 +44,37 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   items:
-  - price: 982137
-    name: Cyka
+  - price: 10
+    name: Wall
     icon: {fileID: 0}
-    description: tamer
+    description: Simple Wall
+    prefab: {fileID: 6612248245404518628, guid: 0f5870fe651dae44286b2b788b2cfbe0,
+      type: 3}
+    category: 1
+    itemType: 0
+    activationKey: 119
+  - price: 10
+    name: Healthpack
+    icon: {fileID: 0}
+    description: Get a boost of HP !
     prefab: {fileID: 0}
     category: 0
-  - price: 56
-    name: Blyat
+    itemType: 1
+    activationKey: 120
+  - price: 10
+    name: Runner boost
     icon: {fileID: 0}
-    description: nik
+    description: Run faster
     prefab: {fileID: 0}
     category: 0
-  - price: 90
-    name: Tamer
+    itemType: 2
+    activationKey: 99
+  - price: 10
+    name: Wolf Trap
     icon: {fileID: 0}
-    description: cyka
-    prefab: {fileID: 0}
-    category: 0
-  - price: 877878
-    name: Tamer
-    icon: {fileID: 0}
-    description: cyka
-    prefab: {fileID: 0}
-    category: 0
-  - price: 90
-    name: Tamer
-    icon: {fileID: 0}
-    description: cyka
-    prefab: {fileID: 0}
-    category: 0
+    description: Useful to trap monsters
+    prefab: {fileID: 4114616655889148918, guid: 7defd3cc67a6b5f45a910693e06d17da,
+      type: 3}
+    category: 1
+    itemType: 3
+    activationKey: 118

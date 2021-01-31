@@ -76,10 +76,10 @@ public class PlayerControl : MonoBehaviour
         float moveSpeedY = moveDirection.y;
 
         moveDirection = (transform.TransformDirection(Vector3.forward) 
-            * (willRun ? stats.runSpeed : stats.walkSpeed) 
+            * (willRun ? stats.getRunSpeed() : stats.getWalkSpeed()) 
             * Input.GetAxis("Vertical")) 
             + (transform.TransformDirection(Vector3.right) 
-            * (willRun ? stats.runSpeed : stats.walkSpeed) 
+            * (willRun ? stats.getRunSpeed() : stats.getWalkSpeed()) 
             * Input.GetAxis("Horizontal"));
 
         moveDirection.y = isJumping && playerController.isGrounded 
