@@ -127,10 +127,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 514631617, guid: 5baae45fbefa3f44d9b87651bfa344e2, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 514631618, guid: 5baae45fbefa3f44d9b87651bfa344e2, type: 3}
+      propertyPath: WalkMonster
+      value: 
+      objectReference: {fileID: 8300000, guid: 75a3ab430b239a5469fa9a4619537a50, type: 3}
     - target: {fileID: 4562137127143830386, guid: 5baae45fbefa3f44d9b87651bfa344e2,
         type: 3}
       propertyPath: m_Name
-      value: Crawler
+      value: Crawler Variant
       objectReference: {fileID: 0}
     - target: {fileID: 4562137127143830393, guid: 5baae45fbefa3f44d9b87651bfa344e2,
         type: 3}
