@@ -5,7 +5,7 @@ using Button = UnityEngine.UI.Button;
 
 public class ShopManager : MonoBehaviour
 {
-    public Button exitButton, buyButton;
+    public Button returnButton, buyButton;
 
     public Transform scrollViewItemContent;
     public GameObject prefabItemGridElement;
@@ -48,7 +48,7 @@ public class ShopManager : MonoBehaviour
 
         SelectItem(database.items[0]);
         buyButton.onClick.AddListener(BuyItem);
-        exitButton.onClick.AddListener(ExitShop);
+        returnButton.onClick.AddListener(ExitShop);
     }
 
     public void Update()
@@ -58,15 +58,20 @@ public class ShopManager : MonoBehaviour
 
     public void BuyItem()
     {
+        if (!guiManager.isShopInteractable)
+            return;
+
         if (currentlySelectedItem.price < playerStats.money)
         {
             playerStats.BuyItem(currentlySelectedItem);
+            SelectItem(currentlySelectedItem);
         }
-        SelectItem(currentlySelectedItem);
     }
 
     public void OnItemGridElementClick(PointerEventData eventData)
     {
+        if (!guiManager.isShopInteractable)
+            return;
         SelectItem(eventData.pointerPress.GetComponent<ItemGridElementInfo>().itemInfo);
     }
 
@@ -81,7 +86,9 @@ public class ShopManager : MonoBehaviour
 
     private void ExitShop()
     {
-        print("Exiting");
+        if (!guiManager.isShopInteractable)
+            return;
+
         guiManager.ExitShop();
     }
 }
