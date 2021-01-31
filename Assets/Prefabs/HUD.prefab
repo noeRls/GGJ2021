@@ -324,7 +324,7 @@ GameObject:
   - component: {fileID: 2983884892698028309}
   m_Layer: 5
   m_Name: HUD
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -424,7 +424,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87f8e721d2254f8498bf74963632ed20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerStats: {fileID: 0}
   hpDisplay: {fileID: 2983884892669286552}
   enduranceDisplay: {fileID: 2983884894039593799}
   stateDisplay: {fileID: 2983884893930604221}

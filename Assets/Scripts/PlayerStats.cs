@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
 public class PlayerStats : MonoBehaviour
 {
@@ -24,10 +26,20 @@ public class PlayerStats : MonoBehaviour
 
     private float runnerPotionTimeRemaining = 0.0f;
 
+    public Dictionary<ItemType, int> inventory = new Dictionary<ItemType, int>();
     public float getSoundDistance()
     {
         if (!moving) return 0;
         return running ? soundDistanceRunning : soundDistanceWalking;
+    }
+
+    private void Start()
+    {
+        ItemList itemLists = GameObject.FindGameObjectWithTag("Database").GetComponent<ItemList>();
+        foreach (var item in itemLists.items)
+        {
+            inventory[item.itemType] = 0;
+        }
     }
 
     public void doDamage(float damage)
@@ -55,6 +67,7 @@ public class PlayerStats : MonoBehaviour
     public void BuyItem(ItemInfo item)
     {
         money -= item.price;
+        inventory[item.itemType] += 1;
         //todo increment item
     }
 

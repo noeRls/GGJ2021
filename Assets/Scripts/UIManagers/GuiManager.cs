@@ -19,7 +19,6 @@ public class GuiManager : MonoBehaviour
         playerStats = GameObject
             .FindGameObjectWithTag("Player")
             .GetComponent<PlayerStats>();
-
         ExitShop();
     }
 

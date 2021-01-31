@@ -14,7 +14,7 @@ public class ShopTrigger : MonoBehaviour
 
     private void OnTriggerEnter(Collider shouldBePlayer)
     {
-        if (shouldBePlayer.gameObject.CompareTag("Player"))
+        if (!shouldBePlayer.gameObject.CompareTag("Player"))
             return;
 
         guiManager.EnterShop();
@@ -22,7 +22,7 @@ public class ShopTrigger : MonoBehaviour
 
     private void OnTriggerExit(Collider shouldBePlayer)
     {
-        if (shouldBePlayer.gameObject.CompareTag("Player"))
+        if (!shouldBePlayer.gameObject.CompareTag("Player"))
             return;
 
         guiManager.ExitShop();

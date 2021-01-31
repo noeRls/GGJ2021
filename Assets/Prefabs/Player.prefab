@@ -267,7 +267,7 @@ MonoBehaviour:
   increaserEndurance: 5
   moveDirection: {x: 0, y: 0, z: 0}
   playerCamera: {fileID: 6849324790729374512}
-  playerController: {fileID: 0}
+  playerController: {fileID: 6849324791762520706}
   flashlight: {fileID: 2126942964}
   isFlashlightOn: 1
 --- !u!114 &7834023843258993510

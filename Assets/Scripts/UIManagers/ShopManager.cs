@@ -81,6 +81,7 @@ public class ShopManager : MonoBehaviour
 
     private void ExitShop()
     {
+        print("Exiting");
         guiManager.ExitShop();
     }
 }
