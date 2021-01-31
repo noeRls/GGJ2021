@@ -17,6 +17,7 @@ public class Monster : MonoBehaviour
     protected NavMeshAgent navMeshAgent;
     protected Vector3 target = new Vector3(0, 0, 0);
     protected Vector3? playerPos = null;
+    private bool isTrapped = false;
 
     public float getTargetDistance()
     {
@@ -97,8 +98,15 @@ public class Monster : MonoBehaviour
         navMeshAgent.speed = isRunning() ? speedRun : speedWalk;
     }
 
+    public void getTrapped()
+    {
+        isTrapped = true;
+        navMeshAgent.isStopped = true;
+    }
+
     protected void monsterUpdate()
     {
+        if (isTrapped) return;
         updatePlayerPos();
         updateTarget();
         checkTargetDestination();
