@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PauseManager : MonoBehaviour
 {
@@ -28,7 +29,7 @@ public class PauseManager : MonoBehaviour
 
     private void OnButtonExitClick()
     {
-        //todo
+        Application.Quit();
     }
 
     private void OnButtonResumeClick()
@@ -38,6 +39,7 @@ public class PauseManager : MonoBehaviour
 
     private void OnButtonStartOverClick()
     {
-        //todox
+        guiManager.TogglePause();
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }
