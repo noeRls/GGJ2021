@@ -7049,6 +7049,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 784292647870207634, guid: eb57bf1a127562d4ab94bd754a343237,
         type: 3}
+      propertyPath: guiManager
+      value: 
+      objectReference: {fileID: 1912600394}
+    - target: {fileID: 784292647870207634, guid: eb57bf1a127562d4ab94bd754a343237,
+        type: 3}
       propertyPath: possiblePosition.Array.data[0]
       value: 
       objectReference: {fileID: 495529104}

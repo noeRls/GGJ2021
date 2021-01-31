@@ -51,6 +51,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  guiManager: {fileID: 0}
 --- !u!65 &438532190
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -76,7 +77,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fdc52c434e81fc145978b3cf32cc57ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hudManager: {fileID: 0}
 --- !u!1001 &8898569976886185229
 PrefabInstance:
   m_ObjectHideFlags: 0
