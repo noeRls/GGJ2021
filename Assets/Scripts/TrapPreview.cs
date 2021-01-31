@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class TrapPreview : MonoBehaviour
 {
-    public MeshRenderer meshRenderer;
     public BoxCollider disableCollider;
     public Rigidbody disableRigidbody;
     public List<MonoBehaviour> scriptToDisable;
@@ -17,12 +16,6 @@ public class TrapPreview : MonoBehaviour
         {
             c.enabled = false;
         }
-    }
-    void Start()
-    {
-        Color transparentColor = meshRenderer.material.color;
-        transparentColor.a = 0.5f;
-        meshRenderer.material.color = transparentColor;
     }
 
     public void cancel()
@@ -39,10 +32,5 @@ public class TrapPreview : MonoBehaviour
         {
             disabledComponent.enabled = true;
         }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
     }
 }

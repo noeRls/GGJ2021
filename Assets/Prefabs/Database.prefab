@@ -51,4 +51,30 @@ MonoBehaviour:
     prefab: {fileID: 6612248245404518628, guid: 0f5870fe651dae44286b2b788b2cfbe0,
       type: 3}
     category: 1
+    itemType: 0
     activationKey: 119
+  - price: 10
+    name: Healthpack
+    imagePath: ede
+    description: Get a boost of HP !
+    prefab: {fileID: 0}
+    category: 0
+    itemType: 1
+    activationKey: 120
+  - price: 10
+    name: Runner boost
+    imagePath: dzzad
+    description: Run faster
+    prefab: {fileID: 0}
+    category: 0
+    itemType: 2
+    activationKey: 99
+  - price: 10
+    name: Wolf Trap
+    imagePath: dzzad
+    description: Useful to trap monsters
+    prefab: {fileID: 4114616655889148918, guid: 7defd3cc67a6b5f45a910693e06d17da,
+      type: 3}
+    category: 1
+    itemType: 3
+    activationKey: 118

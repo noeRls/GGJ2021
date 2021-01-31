@@ -2,6 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum ItemType
+{
+    SANDBAG,
+    HEALTHPACK,
+    RUNNER_POTION,
+    WOLF_TRAP
+}
+
 [System.Serializable]
 public struct ItemInfo
 {
@@ -11,6 +19,7 @@ public struct ItemInfo
     public string description;
     public GameObject prefab;
     public ItemCategory category;
+    public ItemType itemType;
     public KeyCode activationKey;
 }
 
