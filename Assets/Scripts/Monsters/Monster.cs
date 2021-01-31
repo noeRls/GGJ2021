@@ -1,8 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.AI;
-using System;
 
 public class Monster : MonoBehaviour
 {
@@ -15,9 +12,12 @@ public class Monster : MonoBehaviour
     private GameObject player;
     private PlayerStats playerStats;
     protected NavMeshAgent navMeshAgent;
-    protected Vector3 target = new Vector3(0, 0, 0);
+    public Vector3 target = new Vector3(0, 0, 0);
     protected Vector3? playerPos = null;
     private bool isTrapped = false;
+    
+    private Vector3 mapCenter = new Vector3(500, 122, 500);
+    public Vector3 defaultTarget;
 
     public float getTargetDistance()
     {
@@ -42,11 +42,39 @@ public class Monster : MonoBehaviour
             print("Error: no player found");
         }
         playerStats = player.GetComponent<PlayerStats>();
+        updateDefaultTarget();
+        target = getDefaultTarget();
     }
 
     Vector3 getDefaultTarget()
     {
-        return new Vector3(0, 0, 0);
+        return defaultTarget;
+    }
+
+    Vector3 getOppositePosition()
+    {
+        Vector3 diffFromCenter = transform.position - mapCenter;
+        Vector3 opposedDirection = transform.position - diffFromCenter * 2;
+        print(transform.position);
+        opposedDirection.y = transform.position.y;
+        print(opposedDirection);
+        return opposedDirection;
+    }
+
+    Vector3 getCloseRandomPosition()
+    {
+        return transform.position + new Vector3(Random.Range(0.0f, 100f), 0, Random.Range(0.0f, 100f));
+    }
+
+    void updateDefaultTarget()
+    {
+        Vector3 position = getCloseRandomPosition();
+        Vector3 goodPosition;
+        if (!MonsterSpawner.clipPointToNavMesh(position, out goodPosition))
+        {
+            Debug.LogWarning("Failed to generate default target for monster");
+        }
+        defaultTarget = goodPosition;
     }
 
     void updatePlayerPos()
@@ -78,6 +106,10 @@ public class Monster : MonoBehaviour
 
     virtual protected void onTargetReach()
     {
+        if (target == getDefaultTarget())
+        {
+            updateDefaultTarget();
+        }
         if (playerPos.HasValue && target == playerPos.Value)
         {
             playerPos = null;
