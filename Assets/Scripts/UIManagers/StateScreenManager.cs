@@ -53,7 +53,12 @@ public class StateScreenManager : MonoBehaviour
     private void TogglePause(bool isScreenDisabled)
     {
         Time.timeScale = isScreenDisabled ? 1f : 0f;
-         
+
+        if(playerStats == null)
+            playerStats = GameObject
+                .FindGameObjectWithTag("Player")
+                .GetComponent<PlayerStats>();
+
         if (!isScreenDisabled)
             playerStats.Freeze();
         else
