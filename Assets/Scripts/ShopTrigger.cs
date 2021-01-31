@@ -6,12 +6,6 @@ public class ShopTrigger : MonoBehaviour
 {
     public GuiManager guiManager;
     public AmbientSound ambiantSound;
-    
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
 
     private void OnTriggerEnter(Collider shouldBePlayer)
     {

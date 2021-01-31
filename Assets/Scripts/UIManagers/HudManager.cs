@@ -54,11 +54,5 @@ public class HudManager : MonoBehaviour
         {
             tamer[item].qte.text = $"{playerStats.Inventory()[item]}";
         }
-
-        if (playerStats.dead)
-        {
-            stateDisplay.text = "You died !";
-            //todo replace by smthin better
-        }
     }
 }

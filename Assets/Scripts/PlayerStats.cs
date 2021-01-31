@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerStats : MonoBehaviour
@@ -64,7 +63,6 @@ public class PlayerStats : MonoBehaviour
     {
         money -= item.price;
         inventory[item.itemType] += 1;
-        //todo increment item
     }
 
     public void useHealthPack()
