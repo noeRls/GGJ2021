@@ -43,9 +43,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32d4257fb1a35a54481e9d7d966b39c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radius: 10
-  monsterSpawned: 10
+  radius: 400
+  increaseByRound: 1.5
+  monsterSpawned: 200
   mobs:
-  - prefab: {fileID: 5167116776850765130, guid: 4acf9d6677f69064b9bd0be89adad5f6,
+  - prefab: {fileID: 5576285766551607676, guid: daa891ad79e4d10439830f2c8e2bf50e,
       type: 3}
     rate: 2
+    isSpider: 0
+  - prefab: {fileID: 6712161479615104690, guid: cd590839ef528f146b13d759fc95f305,
+      type: 3}
+    rate: 1
+    isSpider: 0
+  - prefab: {fileID: 3485230664300736070, guid: dc1b2d05d2f4d6344a6ddc1100886554,
+      type: 3}
+    rate: 1
+    isSpider: 0
+  - prefab: {fileID: 4010935451392209165, guid: b0c52f0bbaa423e48bb0c31f77eb361a,
+      type: 3}
+    rate: 2
+    isSpider: 0
+  - prefab: {fileID: 5576285766551607676, guid: daa891ad79e4d10439830f2c8e2bf50e,
+      type: 3}
+    rate: 1
+    isSpider: 0
+  spiderSpawner: 0
