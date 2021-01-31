@@ -46,6 +46,12 @@ public class GuiManager : MonoBehaviour
         stateScreen.Summon(StateScreenManager.State.DEATH);
     }
 
+    public void bringVictory()
+    {
+        hud.gameObject.SetActive(false);
+        stateScreen.Summon(StateScreenManager.State.WIN);
+    }
+
     public void TogglePause()
     {
         bool isPauseEnabled = stateScreen.CurrentState() == StateScreenManager.State.PAUSE;

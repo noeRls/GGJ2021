@@ -5,6 +5,7 @@ using UnityEngine;
 public class VictoryObject : MonoBehaviour
 {
     public List<Transform> possiblePosition;
+    public GuiManager guiManager;
     private GameManager manager;
     private MeshRenderer[] meshs;
     private Color darkColor = new Color(0.1f, 0.1f, 0.1f, 0);
@@ -44,8 +45,7 @@ public class VictoryObject : MonoBehaviour
         if (other.gameObject.CompareTag("Player") &&
             Input.GetKeyDown(KeyCode.E))
         {
-            print("Player won");
-            // TODO Player WON
+            guiManager.bringVictory();
         }
     }
 }
