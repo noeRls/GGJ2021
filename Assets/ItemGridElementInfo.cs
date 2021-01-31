@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class ItemGridElementInfo : MonoBehaviour
 {
-    public Text itemDescription = null;
+    public Text itemName = null;
     public Image itemImage = null;
     public ItemInfo itemInfo;
 }

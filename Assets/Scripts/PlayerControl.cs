@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class PlayerControl : MonoBehaviour
 {
-    public bool lockMouse = true;
-
     public float baseGravity = 20f;
     public float baseLookSpeed = 2f;
     public float baseLookXLimit = 80f;
@@ -29,17 +27,13 @@ public class PlayerControl : MonoBehaviour
     {
         playerController = GetComponent<CharacterController>();
         stats = GetComponent<PlayerStats>();
-
-        if (lockMouse)
-        {
-            Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;
-        }
     }
 
     // Update is called once per frame
     void Update()
     {
+        Cursor.lockState = stats.lockMouse ? CursorLockMode.Locked : CursorLockMode.None;
+        Cursor.visible = !stats.lockMouse;
         if (!stats.canMove)
         {
             stats.running = false;
@@ -103,5 +97,9 @@ public class PlayerControl : MonoBehaviour
         playerCamera.transform.localRotation = Quaternion.Euler(rotationX, 0, 0);
         transform.rotation *= Quaternion.Euler(0, Input.GetAxis("Mouse X") * baseLookSpeed, 0);
         flashlight.transform.localRotation = Quaternion.Euler(rotationX, 0, 0);
+
+        Vector3 newRotation = transform.rotation.eulerAngles;
+        newRotation.z = 0;
+        transform.rotation = Quaternion.Euler(newRotation); // freeze Z
     }
 }

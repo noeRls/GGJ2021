@@ -95,6 +95,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 429452}
+  - component: {fileID: 369731904}
+  - component: {fileID: 7866127840811839857}
   m_Layer: 0
   m_Name: Church
   m_TagString: Untagged
@@ -109,7 +111,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 114982}
-  m_LocalRotation: {x: 0, y: -0.69206214, z: 0, w: 0.72183794}
+  m_LocalRotation: {x: 0, y: -0.6920613, z: 0, w: 0.7218387}
   m_LocalPosition: {x: 247.52704, y: -0.00039958954, z: 219.14104}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -117,7 +119,34 @@ Transform:
   - {fileID: 492500}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -87.587006, z: 0}
+--- !u!65 &369731904
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 114982}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 10.451628, y: 8.876282, z: 5.391434}
+  m_Center: {x: -10.12412, y: 5.561859, z: 0.19019176}
+--- !u!114 &7866127840811839857
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 114982}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e43c5f52f123c334a9baa6acbf6019c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  guiManager: {fileID: 0}
 --- !u!1 &140998
 GameObject:
   m_ObjectHideFlags: 0

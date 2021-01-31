@@ -1,59 +1,94 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
-using UnityEngine.UIElements;
 using Button = UnityEngine.UI.Button;
-using Image = UnityEngine.UI.Image;
 
-public class ShopManager : MonoBehaviour, IPointerClickHandler
+public class ShopManager : MonoBehaviour
 {
-    public Button exitButton, buyButton;
-    public Transform baseSpawnPoint;
+    public Button returnButton, buyButton;
+
+    public Transform scrollViewItemContent;
     public GameObject prefabItemGridElement;
 
-    public ItemList database;
+    public Text description;
+    public Text moneyDisplay;
+
+    ItemInfo currentlySelectedItem;
+
+    public GuiManager guiManager;
+    private ItemList database;
+    private PlayerStats playerStats;
 
     // Start is called before the first frame update
     void Start()
     {
-        int number = database.items.Count;
+        playerStats = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>();
+        database = GameObject.FindGameObjectWithTag("Database").GetComponent<ItemList>();
 
-        for(int i = 0; i < number; i++)
+        EventTrigger.Entry entry = new EventTrigger.Entry();
+        entry.eventID = EventTriggerType.PointerClick;
+        entry.callback.AddListener(data => { OnItemGridElementClick((PointerEventData)data); });
+
+        foreach(ItemInfo item in database.items)
         {
-            float shiftX = i * 150;
-            Vector3 spawnPosition = new Vector3(baseSpawnPoint.position.x + shiftX, baseSpawnPoint.position.y, baseSpawnPoint.position.z);
-            GameObject gridElement = Instantiate(prefabItemGridElement, spawnPosition, baseSpawnPoint.rotation);
-            gridElement.transform.SetParent(baseSpawnPoint, false);
-            ItemGridElementInfo infos = gridElement.GetComponent<ItemGridElementInfo>();
+            GameObject createdGridElement = Instantiate(prefabItemGridElement);
+            ItemGridElementInfo createdGridElementInfo = createdGridElement.GetComponent<ItemGridElementInfo>();
 
-            infos.itemDescription.text = database.items[i].description;
-            infos.itemImage = null;
-            infos.itemInfo = database.items[i];
+            createdGridElementInfo.itemImage.sprite = item.icon;
+            createdGridElementInfo.itemName.text = item.name;
+            createdGridElementInfo.itemInfo = item;
+
+            EventTrigger trigger = createdGridElement.GetComponent<EventTrigger>();
+            trigger.triggers.Add(entry);
+
+            createdGridElement.transform.localScale = Vector3.one;
+            createdGridElement.SetActive(true);
+            createdGridElement.transform.SetParent(scrollViewItemContent, false);
         }
 
-        exitButton.onClick.AddListener(ExitShop);
+        SelectItem(database.items[0]);
+        buyButton.onClick.AddListener(BuyItem);
+        returnButton.onClick.AddListener(ExitShop);
+    }
+
+    public void Update()
+    {
+        moneyDisplay.text = $"{playerStats.money} €";
+    }
+
+    public void BuyItem()
+    {
+        if (!guiManager.isShopInteractable)
+            return;
+
+        if (currentlySelectedItem.price < playerStats.money)
+        {
+            playerStats.BuyItem(currentlySelectedItem);
+            SelectItem(currentlySelectedItem);
+        }
+    }
+
+    public void OnItemGridElementClick(PointerEventData eventData)
+    {
+        if (!guiManager.isShopInteractable)
+            return;
+        SelectItem(eventData.pointerPress.GetComponent<ItemGridElementInfo>().itemInfo);
+    }
+
+    private void SelectItem(ItemInfo item)
+    {
+        currentlySelectedItem = item;
+        description.text = currentlySelectedItem.description;
+        buyButton.GetComponentInChildren<Text>().text = $"Buy ({currentlySelectedItem.price} €)";
+
+        buyButton.interactable = currentlySelectedItem.price < playerStats.money;
     }
 
     private void ExitShop()
     {
+        if (!guiManager.isShopInteractable)
+            return;
 
-    }
-
-    private void BuyItem(PointerEventData item)
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    public void OnPointerClick(PointerEventData eventData)
-    {
-        Debug.Log(eventData);
+        guiManager.ExitShop();
     }
 }

@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
 public class PlayerStats : MonoBehaviour
 {
@@ -8,7 +10,6 @@ public class PlayerStats : MonoBehaviour
 
     public float walkSpeed = 6f;
     public float runSpeed = 10f;
-
     public float jumpSpeed = 8f;
 
     public float soundDistanceRunning = 20f;
@@ -21,12 +22,24 @@ public class PlayerStats : MonoBehaviour
     public bool moving = false;
     public bool dead = false;
 
+    public bool lockMouse = true;
+
     private float runnerPotionTimeRemaining = 0.0f;
 
+    public Dictionary<ItemType, int> inventory = new Dictionary<ItemType, int>();
     public float getSoundDistance()
     {
         if (!moving) return 0;
         return running ? soundDistanceRunning : soundDistanceWalking;
+    }
+
+    private void Start()
+    {
+        ItemList itemLists = GameObject.FindGameObjectWithTag("Database").GetComponent<ItemList>();
+        foreach (var item in itemLists.items)
+        {
+            inventory[item.itemType] = 0;
+        }
     }
 
     public void doDamage(float damage)
@@ -37,6 +50,25 @@ public class PlayerStats : MonoBehaviour
             dead = true;
             canMove = false;
         }
+    }
+
+    public void Freeze()
+    {
+        canMove = false;
+        lockMouse = false;
+    }
+
+    public void Unfreeze()
+    {
+        canMove = true;
+        lockMouse = true;
+    }
+
+    public void BuyItem(ItemInfo item)
+    {
+        money -= item.price;
+        inventory[item.itemType] += 1;
+        //todo increment item
     }
 
     public void useHealthPack()
