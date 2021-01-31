@@ -35,6 +35,15 @@ public class GuiManager : MonoBehaviour
             else
                 TogglePause();
         }
+
+        if (playerStats.dead)
+            BringDeath();
+    }
+
+    public void BringDeath()
+    {
+        hud.gameObject.SetActive(false);
+        stateScreen.Summon(StateScreenManager.State.DEATH);
     }
 
     public void TogglePause()

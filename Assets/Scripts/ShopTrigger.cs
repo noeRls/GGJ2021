@@ -5,12 +5,6 @@ using UnityEngine;
 public class ShopTrigger : MonoBehaviour
 {
     public GuiManager guiManager;
-    
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
 
     private void OnTriggerEnter(Collider shouldBePlayer)
     {
