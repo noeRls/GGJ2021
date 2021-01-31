@@ -54,10 +54,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 514631617, guid: 5baae45fbefa3f44d9b87651bfa344e2, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 514631619, guid: 5baae45fbefa3f44d9b87651bfa344e2, type: 3}
+      propertyPath: MaxDistance
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 4562137127143830386, guid: 5baae45fbefa3f44d9b87651bfa344e2,
         type: 3}
       propertyPath: m_Name
-      value: Pig
+      value: Pig Variant
       objectReference: {fileID: 0}
     - target: {fileID: 4562137127143830386, guid: 5baae45fbefa3f44d9b87651bfa344e2,
         type: 3}
